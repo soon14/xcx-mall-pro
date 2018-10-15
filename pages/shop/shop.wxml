@@ -1,0 +1,47 @@
+<!-- <view class="container">
+    <view class="shop-list" >
+        <navigator url="../shopDetail/shopDetail?id={{item.id}}"  class="item" wx:for="{{shopList}}" wx:key="$this">
+            <view class="img-bg">
+                <image src="{{item.pic}}" background-size="cover"></image>
+            </view>
+            <view class="txt-box">
+                <view class="line">
+                    <text class="name" >{{item.name}}</text>
+                     <text class="s">|</text>
+                    <text class="price">距离{{item.distance}}公里</text>
+                </view>
+            </view>
+        </navigator >
+    </view>
+</view> -->
+<scroll-view scroll-y class="scroller" bindscrolltolower="addPage">
+      <view wx:if="{{!hasAddress}}" class="weui-panel__hd no-address">未获取到地理位置，请允许小程序授权地理位置<view class="get-address" bindtap="getAddress"><icon class="qb-icon qb-icon-dingwei"></icon><text>重新定位</text></view></view>
+      <view class="line"></view>
+      <view class="weui-panel__bd">
+          <navigator wx:for="{{shops}}" wx:key="$this" url="/pages/shopDetail/shopDetail?id={{item.id}}" open-type="navigate" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+              <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{item.media[0].url}}" />
+              </view>
+              <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title" wx:if="{{item.branchName}}">{{item.name}}({{item.branchName}})</view>
+                  <view class="weui-media-box__title" wx:else>{{item.name}}</view>
+                  <view class="weui-media-box__desc">人均 ￥{{item.avgPrice / 100}}</view>
+                  <!-- <view class="distance" wx:if="{{hasAddress}}"><icon class="qb-icon qb-icon-daohang" />{{item.distance.value}}{{item.distance.unit}}</view> -->
+                  <!-- <view class="weui-media-box-call">预约电话：{{item.phone}}</view> -->
+                  <!-- <view class="weui-media-box__activity"><text>特惠活动</text></view> -->
+              </view>
+              <view class="distance">
+                  <text>{{item.showDistance}}</text>
+                  <icon class="qb-icon qb-icon-nextx"/>
+                  <!-- <image class="icon-right" src="/static/images/scan_right.png"/> -->
+              </view>
+          </navigator>
+      </view>
+      <view class="weui-loadmore" wx:if="{{isLoading}}">
+          <view class="weui-loading"></view>
+          <view class="weui-loadmore__tips">正在加载</view>
+      </view>
+      <view class="weui-loadmore weui-loadmore_line" wx:if="{{noMoreData && shops.length > 5}}">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我是有底线的</view>
+      </view>
+</scroll-view>

@@ -1,0 +1,2 @@
+<!--component/image-o/image-o.wxml-->
+<image class="o-class" src="{{curSrc}}" mode="{{mode}}" lazy-load="{{lazyLoad}}" binderror="onErr"/>

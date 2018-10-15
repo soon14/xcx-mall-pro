@@ -1,0 +1,6 @@
+<template name="nodata">
+	<view class="nodata-wrap">
+		<image src="/static/images/nodata.png" mode="scaleToFill"></image>
+		<view class="t">暂无数据</view>
+	</view>
+</template>

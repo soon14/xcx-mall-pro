@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "coupons": "../../../component/coupon/coupon"
+  },
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "优惠券",
+  "onReachBottomDistance": 50
+}

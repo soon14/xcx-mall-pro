@@ -1,0 +1,38 @@
+<view class="container">
+    <view class="cate-nav">
+        <scroll-view scroll-x="true" class="cate-nav-body" style="width: 750rpx;" scroll-left="{{scrollLeft}}">
+            <view  wx:for="{{navList}}"  wx:key="$this" class="item {{ id == item.id ? 'active' : ''}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="switchCate">
+                <view class="name" style="color: {{id == item.id ? style.categoryTabActiveText : ''}};border-color: {{id == item.id ? style.categoryTabActiveBorder : ''}}">{{item.name}}</view>
+            </view>
+        </scroll-view>
+    </view>
+    <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="goods-list-wrap" bindscrolltolower="bindscrolltolower2">
+
+    <view class="cate-item">
+        <view class="h">
+            <text class="name">{{currentCategory.name}}</text>
+            <text class="desc">{{currentCategory.description}}</text>
+        </view>
+        <view class="b">
+            <navigator class="item {{(iindex + 1) % 2 == 0 ? 'item-b' : ''}}" url="/pages/placeDetail/placeDetail?id={{iitem.id}}" wx:for="{{placeList}}" wx:for-item="iitem" wx:key="$this" wx:for-index="iindex">
+            <!-- <view bindtap="imagePreview" data-src="{{iitem.pic}}" data-images="{{placeList}}" class="item {{(iindex + 1) % 2 == 0 ? 'item-b' : ''}}" wx:for="{{placeList}}" wx:for-item="iitem" wx:key="$this" wx:for-index="iindex" > -->
+                <image class="img" src="{{iitem.media[0].url}}" background-size="cover"></image>
+                <text class="name">{{iitem.name}}</text>
+                <text class="price" wx:if="{{iitem.type=='DESK'}}">散座</text>
+               <text class="price" wx:if="{{iitem.type=='ROOM'}}">包厢</text>
+            </navigator>
+        </view>
+    </view>
+    <view class="weui-loadmore" wx:if="{{isLoading}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" wx:if="{{!isLoading && noMoreData && placeList.length > 5}}">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我是有底线的</view>
+    </view>
+    </scroll-view>
+    <block wx:if="{{nodata}}">
+        <import src="../../component/nodata/nodata.wxml" /> 
+        <template is="nodata"></template>
+    </block>
+</view>

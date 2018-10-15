@@ -1,0 +1,31 @@
+<view class="container">
+    <view class="items">
+        <navigator url="../../goods/goods?id={{item.target.id}}" class="item" wx:for="{{footprintList}}" wx:key="{{item.id}}">
+            <!-- <view class="h">
+                <view class="l">时间：{{item.createdTime}}</view>
+                <view class="r">{{item.statusName}}</view>
+            </view> -->
+            <view class="subitem">
+                <view class="img">
+                    <image src="{{item.target.metadata.url}}"></image>
+                </view>
+                <view class="info">
+                    <text class="name">{{item.target.name}}</text>
+                    <text class="number"></text>
+                </view>
+                <view class="status"></view>
+            </view>
+            <!-- <view class="b">
+                <view class="l">实付：￥{{item.realFee / 100}}</view>
+                <view class="r">
+                    <button class="btn" data-footprint-index="{{index}}" wx:if="{{item.status==101}}" catchtap="payOrder">去付款</button>
+                </view>
+            </view> -->
+        </navigator>
+    </view>
+    <view class="empty-view" wx:if="{{ footprintList.length <= 0 }}">
+      <image class="icon" src="https://oss.qianbaocard.org/20180429/21c07e9ab3cb469c9cc3e5e43604be6c.png"></image>
+      <text class="text">收藏在哪里</text>
+    </view>
+    <!-- <view class="add-item" bindtap="shopAddOrUpdate" data-catalog-id="0">新建门店</view> -->
+</view>

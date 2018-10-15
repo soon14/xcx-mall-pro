@@ -1,0 +1,19 @@
+<view class="container">
+	<view class="weui-cells weui-cells_after-title" wx:if="{{type=='input'}}">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+                <input class="weui-input" disabled="{{disabled}}" maxlength="{{max}}" value="{{value}}" bindinput="bindinput" placeholder="{{placeholder}}" />
+                <view class="weui-textarea-counter">{{value.length}}/{{max}}</view>
+            </view>
+        </view>
+    </view>
+	<view class="weui-cells weui-cells_after-title" wx:if="{{type=='textarea'}}">
+	    <view class="weui-cell weui-cell_textarea">
+	        <view class="weui-cell__bd">
+	            <textarea class="weui-textarea" disabled="{{disabled}}" value="{{value}}" bindinput="bindinput" placeholder="{{placeholder}}" auto-height maxlength="{{max}}"  />
+	            <view class="weui-textarea-counter">{{value.length}}/{{max}}</view>
+	        </view>
+	    </view>
+	</view>
+	<button class="weui-btn" type="primary" bindtap="submit" wx:if="{{!disabled}}">确定</button>
+</view>

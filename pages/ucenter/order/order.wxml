@@ -1,0 +1,174 @@
+<import src="/pages/template/template.wxml" />
+<view class="container">
+
+  <view class="list">
+    <view class="tab_switch">
+    <view bindtap="selectTang">
+        <view>堂食单</view>
+        <view class="{{isTakeout==2?'select':'default'}}"></view>
+      </view>
+      <view bindtap="selectTakeout">
+        <view>外卖单</view>
+        <view class="{{isTakeout==0?'select':'default'}}"></view>
+      </view>
+      <view bindtap="selectGift">
+        <view>礼品单</view>
+        <view class="{{isTakeout==1?'select':'default'}}"></view>
+      </view>
+      
+    </view>
+    <view class="list_takeout" hidden="{{isTakeout!=0}}">
+      <scroll-view class="items" scroll-y="true" lower-threshold="500" bindscrolltolower="addTakePage" wx:if="{{isTakeLoading || takeoutList.length > 0}}">
+        <!-- <navigator url="../../orderDetails/orderDetails?id={{item.id}}" class="item" wx:for="{{takeoutList}}" wx:key="{{item.id}}">
+          <view class="h">
+            <view class="l" wx:if="{{!item.shopName}}">订单编号：{{item.sn}} </view>
+            <view class="l" wx:if="{{item.shopName}}">{{item.shopName}}</view>
+            <view class="r">{{item.progressStatusName}}</view>
+          </view>
+          <view class="time" wx:if="{{item.createdTime}}"> 
+            {{item.createdTime}}
+            <view class="ex_type">{{item.fulfillment.typeName}}</view>
+          </view>
+          <view class="subitem" wx:for="{{item.items}}" wx:key="{{gitem.id}}" wx:for-item="gitem" wx:if="{{gitem.type!=5}}">
+            <view class="img">
+              <image src="{{gitem.goodsPic}}"></image>
+            </view>
+            <view class="info">
+              <text class="name">{{gitem.productName}}</text>
+              <text class="attr" wx:if="{{gitem.goodsSpecs || gitem.productAttrs}}">{{gitem.goodsSpecs}}{{gitem.goodsSpecs&&gitem.productAttrs?"|":""}}{{gitem.productAttrs}}</text>
+              <text class="number">价格: {{gitem.unitPrice / 100}} , 共{{gitem.quantity}}件</text>
+            </view>
+            <view class="status"></view>
+          </view>
+          <view class="b" wx:for="{{item.items}}" wx:key="{{gitem.id}}" wx:for-item="gitem" wx:if="{{gitem.type==5}}">
+            <view class="l">配送费：￥{{gitem.unitPrice / 100}}</view>
+          </view>
+          <view class="b">
+            <view class="l">实付：￥{{item.formatTotalFee}}</view>
+            <view class="r">
+              <button class="btn" data-order-index="{{index}}" wx:if="{{item.status==10}}" catchtap="payTakeOrder">去付款</button>
+            </view>
+          </view>
+        </navigator> -->
+         <navigator url="../../orderDetails/orderDetails?id={{item.id}}" class="item" wx:for="{{takeoutList}}" wx:key="{{item.id}}">
+          <view class="h">
+            <view class="img">
+              <image src="{{item.items[0].goodsPic}}"></image>
+            </view>
+            <view class="l" wx:if="{{item.shopName}}">
+              <text>{{item.sellerName}}</text>
+              <icon class="qb-icon qb-icon-nextx" />
+            </view>
+            <view class="time">{{item.createdTime}}</view>
+            <view class="r" wx:if="{{item.status==21}}">订单已送达</view>
+            <view class="r" wx:elif="{{item.status==10}}">
+              <text>等待支付...</text>
+              <view class="remaintime">剩余05:30</view>
+            </view>
+            <view class="r" wx:elif="{{item.status==11}}">订单已取消</view>
+          </view>
+          <view class="subitem">
+            <view class="info">
+              <text class="name" wx:if="{{item.items.length>1}}">{{item.items[0].productName}}等{{item.items.length}}件商品</text>
+              <text class="name" wx:else>{{item.items[0].productName}}</text>
+              <text class="number">￥{{item.formatTotalFee}}</text>
+            </view>
+            <view class="status"></view>
+          </view>
+          <view class="b">
+            <view class="r" wx:if="{{item.status==21}}">
+              <button class="btn-repay" data-order-index="{{index}}"  catchtap="goTakeout">再来一单</button>
+            </view>
+             <view class="r" wx:if="{{item.status==10}}">
+              <button class="btn-pay" data-order-index="{{index}}"  catchtap="goTakeout">重新下单</button>
+              <button class="btn" data-order-index="{{index}}" catchtap="payOrder">去支付</button>
+            </view>
+             <view class="r" wx:if="{{item.status==11}}">
+              <button class="btn-repay" data-order-index="{{index}}"  catchtap="goTakeout">重新下单</button>
+            </view>
+          </view>
+        </navigator>
+        <!-- <template is="myorder" data="{{takeoutList,isTakeout}}"/> -->
+        <view class="weui-loadmore" wx:if="{{isTakeLoading}}">
+          <view class="weui-loading"></view>
+          <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view class="weui-loadmore weui-loadmore_line" wx:if="{{noMoreTakeData && takeoutList.length > 4}}">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我是有底线的</view>
+        </view>
+      </scroll-view>
+      <view class="empty-view" wx:if="{{ takeoutList.length <= 0 && !isTakeLoading }}">
+        <image class="empty_icon" src="https://oss.qianbaocard.org/20180429/21c07e9ab3cb469c9cc3e5e43604be6c.png"></image>
+        <text class="text">订单还在路上</text>
+      </view>
+    </view>
+
+    <view class="list_gift" hidden="{{isTakeout!=1}}">
+      <scroll-view class="items" scroll-y bindscrolltolower="addGiftPage" wx:if="{{isGiftLoading || giftList.length > 0}}">
+        <navigator url="../../orderDetails/orderDetails?id={{item.id}}" class="item" wx:for="{{giftList}}" wx:key="{{item.id}}">
+          <view class="h">
+            <view class="l" wx:if="{{!item.shopName}}">订单编号：{{item.sn}} </view>
+            <view class="l" wx:if="{{item.shopName}}">{{item.shopName}}</view>
+            <view class="r">{{item.progressStatusName}}</view>
+
+          </view>
+          <view class="time">
+            {{item.createdTime}}<view class="ex_type">{{item.fulfillment.typeName}}</view>
+          </view>
+          <view class="subitem" wx:for="{{item.items}}" wx:key="{{gitem.id}}" wx:for-item="gitem" wx:if="{{gitem.type!=5}}">
+            <view class="img">
+              <image src="{{gitem.goodsPic}}"></image>
+            </view>
+            <view class="info">
+              <text class="name">{{gitem.productName}}</text>
+              <text class="attr" wx:if="{{gitem.goodsSpecs || gitem.productAttrs}}">{{gitem.goodsSpecs}}{{gitem.goodsSpecs&&gitem.productAttrs?"|":""}}{{gitem.productAttrs}}</text>
+              <text class="number">价格: {{gitem.unitPrice / 100}} , 共{{gitem.quantity}}件</text>
+            </view>
+            <view class="status"></view>
+          </view>
+          <view class="b" wx:for="{{item.items}}" wx:key="{{gitem.id}}" wx:for-item="gitem" wx:if="{{gitem.type==5}}">
+            <view class="l">配送费：￥{{gitem.unitPrice / 100}}</view>
+          </view>
+          <view class="b">
+            <view class="l">实付：￥{{item.formatTotalFee}}</view>
+            <view class="r">
+              <button class="btn" data-order-index="{{index}}" wx:if="{{item.status==10}}" catchtap="payGiftOrder">去付款</button>
+            </view>
+          </view>
+        </navigator>
+        <view class="weui-loadmore" wx:if="{{isGiftLoading}}">
+          <view class="weui-loading"></view>
+          <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view class="weui-loadmore weui-loadmore_line" wx:if="{{noMoreGiftData && giftList.length > 4}}">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我是有底线的</view>
+        </view>
+      </scroll-view>
+      <view class="empty-view" wx:if="{{ giftList.length <= 0 && !isGiftLoading }}">
+        <image class="empty_icon" src="https://oss.qianbaocard.org/20180429/21c07e9ab3cb469c9cc3e5e43604be6c.png"></image>
+        <text class="text">订单在哪里</text>
+      </view>
+    </view>
+
+    <view class="list_tang" hidden="{{isTakeout!=2}}" >
+      <scroll-view class="items" scroll-y bindscrolltolower="addPage" wx:if="{{isLoading || orderList.length > 0}}" lower-threshold="500" >
+         <template is="myorder" data="{{orderList,isTakeout}}"/>
+        <view class="weui-loadmore" wx:if="{{isLoading}}">
+          <view class="weui-loading"></view>
+          <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view class="weui-loadmore weui-loadmore_line" wx:if="{{noMoreData && orderList.length > 4}}">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我是有底线的</view>
+        </view>
+      </scroll-view>
+      <view class="empty-view" wx:if="{{ orderList.length <= 0 && !isLoading }}">
+        <image class="empty_icon" src="https://oss.qianbaocard.org/20180429/21c07e9ab3cb469c9cc3e5e43604be6c.png"></image>
+        <text class="text">订单在哪里</text>
+      </view>
+      <!-- <view class="add-item" bindtap="shopAddOrUpdate" data-catalog-id="0">新建门店</view> -->
+    </view>
+  </view>
+
+  <homepage/>
+  
+</view>

@@ -1,0 +1,26 @@
+<scroll-view class="container" scroll-y="true">
+  <view class='goods' wx:if="{{!openAttr}}">
+    <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+      <swiper-item wx:for="{{gallery}}" wx:key="id">
+        <image src="{{item.url}}" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+    <view class="service-policy">
+      <view class="item">品质无忧</view>
+      <view class="item">用心服务</view>
+      <view class="item">宾至如归</view>
+    </view>
+    <view class="goods-info">
+      <view class="c">
+        <text class="name">{{goods.name}}</text>
+        <text class="price">￥{{goods.price / 100}}</text>
+        <text class="desc" wx:if="{{goods.description}}">{{goods.description}}</text>
+        <view class="brand" wx:if="{{brand.name}}">
+          <navigator url="../brandDetail/brandDetail?id={{brand.brandId}}">
+            <text>{{brand.name}}</text>
+          </navigator>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

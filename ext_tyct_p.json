@@ -1,0 +1,64 @@
+{
+  "extEnable": true,
+  "extAppid": "wx37f58ed579df9956",
+  "directCommit": false,
+  "ext": {
+    "id": "jingliaoli",
+    "topicCategory": "1300",
+    "ApiRootUrl":"https://vinci-api.qianbaocard.com",
+    "version":"v1",
+    "mainColor": "#333",
+    "SellerID": "5b758117fee6bc24202cc9c2",
+    "MpAppID": "wx37f58ed579df9956",
+    "ald_config": {
+      "app_key": "2323232",
+      "getLocation": 0,
+      "getUserinfo": 0
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#333",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/ic_menu_choice_nor.png",
+        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/topic/topic",
+        "iconPath": "static/images/ic_menu_topic_nor.png",
+        "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
+        "text": "专题"
+      },
+      {
+        "pagePath": "pages/takeaway/shopOrder_ta/shopOrder_ta",
+        "iconPath": "static/images/takeout_nor.png",
+        "selectedIconPath": "static/images/takeout_pressed.png",
+        "text": "外卖"
+      },
+      {
+        "pagePath": "pages/orderMenu/orderMenu",
+        "iconPath": "static/images/ic_menu_sort_nor.png",
+        "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
+        "text": "菜单"
+      },
+      {
+        "pagePath": "pages/takeaway/giftShop/giftShop",
+        "iconPath": "static/images/ic_menu_shoping_nor.png",
+        "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
+        "text": "商城"
+      },
+      {
+        "pagePath": "pages/ucenter/index/index",
+        "iconPath": "static/images/ic_menu_me_nor.png",
+        "selectedIconPath": "static/images/ic_menu_me_pressed.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

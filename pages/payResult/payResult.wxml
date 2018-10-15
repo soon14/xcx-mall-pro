@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="pay-result">
+    <view class="success" wx:if="{{status}}">
+      <image class="icon-status" src="/static/images/pay_success.png" mode="scaleToFill"></image>
+      <view class="msg">付款成功!</view>
+      <view class="money">¥ {{money/100}}</view>
+      <view class="btns">
+        <navigator class="btn" url="/pages/ucenter/order/order" open-type="redirect">查看订单</navigator>
+        <button class="btn"  open-type='share'  data-shareId='shareApp'>分享好友</button>
+      </view>
+    </view>
+
+    <view class="error" wx:if="{{!status}}">
+      <view class="msg">付款失败</view>
+      <view class="tips">
+        <view class="p">请在
+          <text class="time">1小时</text> 内完成付款</view>
+        <view class="p">否则订单将会被系统取消</view>
+      </view>
+      <view class="btns">
+        <navigator class="btn" url="/pages/ucenter/order/order" open-type="redirect">查看订单</navigator>
+        <view class="btn" bindtap='payOrder'>重新付款</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class='coupon' wx:if="{{localCoupons && localCoupons.length > 0}}">
+    <view class='coupon_tips'>------已送您优惠券{{canShare ? "，可分享给好友" : ""}}------</view>
+    <view class='coupon_list' style="margin-bottom:{{canShare ? '0rpx;' :'40rpx'}}" >
+      <view class='coupon_item' wx:for='{{localCoupons}}'>
+        <view class='coupon_item_monery'>
+          <view class='coupon_item_monery_symbol'>￥</view>
+          <view class='coupon_item_monery_monery'>{{item.discount}}</view>
+        </view>
+        <view class='coupon_item_condition'>{{item.workCondition}}</view>
+      </view>
+     </view>
+
+    <button wx:if='{{canShare}}' class='coupon_share' open-type='share'  data-shareId='shareCoupon'>去分享</button>
+  </view>
+</view>

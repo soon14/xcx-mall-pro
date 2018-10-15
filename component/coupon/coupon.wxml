@@ -1,0 +1,50 @@
+<!--component/coupon/coupon.wxml-->
+<view class='content' wx:if='{{coupons && coupons.length > 0}}' data-clickItem='{{index}}' bindtap='onItemClick' wx:for='{{coupons}}' wx:key='*this'>
+
+  <view class='dialog_item_content' style='height:{{itemHeight}}rpx'>
+
+    <view class='dialog_item_content_left'>
+
+      <view class='dialog_item_content_left_top'>
+        <symbol>￥</symbol>
+        <dis>{{item.discount}}</dis>
+      </view>
+
+      <view class='dialog_item_content_left_bottom'>{{item.workCondition}}</view>
+    </view>
+
+    <view class='dialog_item_content_middle' wx:if='{{showMiddle}}'>
+      <view class='before' style='background:{{middleColor}}'></view>
+      <view class='after' style='background:{{middleColor}}'></view>
+    </view>
+
+    <view class='dialog_item_content_right'>
+      <view class='dialog_item_content_right_left'>
+        <view class='dialog_item_content_right_top' style='color: {{couponsTitleColor}};'>{{item.workInfo}}</view>
+        <view class='dialog_item_content_right_middle'>{{item.deadLine}}到期</view>
+        <!-- <view class='dialog_item_content_right_bottom'>仅外卖可用</view> -->
+      </view>
+
+      <view class='dialog_item_content_right_right'>
+        <checkbox disabled='{{!allowCheck}}' checked='{{item.isCheck && allowCheck}}' wx:if="{{item.status == 'check'}}"></checkbox>
+        <view class='use' wx:if="{{item.status == 'unUse'}}">立即使用</view>
+      </view>
+      <image class='img' src='/static/images/overdeadline.png' wx:if="{{item.status == 'deadLined'}}"></image>
+      <image class='img' src='/static/images/used.png' wx:if="{{item.status =='used'}}"></image>
+      <image class='img_geted' src='/static/images/icon_geted.png' wx:if="{{item.status =='geted'}}"></image>
+      <image class='img_geted' src='/static/images/unqulity.svg' wx:if="{{item.status =='quantityEmpty'}}"></image>
+
+    </view>
+  </view>
+    <view class='dialog_item_tips' style=' padding-left: {{tipsPaddingLeft}}rpx;' wx:if="{{item.couponUnUsefulReson && item.couponUnUsefulReson.length>0}}"> 
+      <view class='dialog_item_tips_content' style='color:red'>不可用原因</view>
+      <view wx:for="{{item.couponUnUsefulReson}}" wx:for-item="reson">
+      <view class='dialog_item_tips_content' style='color:red'>{{reson}}</view>
+      </view>
+      </view>
+      
+</view>
+
+<view wx:if='{{!coupons || coupons.length == 0}}' class='dialog_item_empty'>
+  暂无优惠券
+</view>

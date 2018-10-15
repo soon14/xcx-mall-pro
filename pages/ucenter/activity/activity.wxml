@@ -1,0 +1,38 @@
+<view class="container">
+    <scroll-view scroll-y class="activities" bindscrolltolower="addPage" wx:if="{{ activityList.length > 0 || isLoading }}">
+        <view data-url="../activityDetail/activityDetail?id={{item.id}}" data-index="{{index}}" bindtap="routerGo" class="activity" wx:for="{{activityList}}" wx:key="{{item.id}}">
+            <view class="h">
+                <view class="l">{{item.title}}</view>
+                <view class="r">{{item.status == 'CANCELED' ? '已关闭': '激活'}}</view>
+            </view>
+            <view class="goods" >
+                <view class="img">
+                    <image src="{{item.metadata.url}}"></image>
+                </view>
+                <view class="info">
+                    <text class="name">桌台：{{item.place.name}}</text>
+                    <text class="number">{{item.metadata.atime}}</text>
+                </view>
+                <view class="status"></view>
+            </view>
+            <view class="b">
+                <view class="l">参与人数：{{item.actors.length}}</view>
+                <view class="r">
+                    <button class="btn" wx:if="{{item.status != 'CANCELED' && user.id == item.owner.eid}}" data-index="{{index}}" data-activity-id="{{item.id}}" catchtap="closeActivity">关闭</button>
+                    <button class="btn" wx:if="{{item.status != 'CANCELED' && user.id != item.owner.eid}}" data-index="{{index}}" data-activity-id="{{item.id}}" catchtap="leaveActivity">退出</button>
+                </view>
+            </view>
+        </view>
+        <view class="weui-loadmore" wx:if="{{isLoading}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view class="weui-loadmore weui-loadmore_line" wx:if="{{noMoreData && activityList.length > 3}}">
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我是有底线的</view>
+        </view>
+    </scroll-view>
+    <view class="empty-view" wx:if="{{ activityList.length <= 0 && !isLoading }}">
+      <image class="icon" src="https://oss.qianbaocard.org/20180429/21c07e9ab3cb469c9cc3e5e43604be6c.png"></image>
+      <text class="text">预约在哪里</text>
+    </view>
+</view>

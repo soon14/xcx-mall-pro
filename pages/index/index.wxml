@@ -1,0 +1,228 @@
+<import src="/pages/template/template.wxml" />
+<template wx:if="{{!is_showHideBtn}}" is='hideBtn' data='{{hideBtnData}}'></template>
+
+<view class="container">
+
+  <block wx:for="{{configs}}" wx:for-item="config" wx:key="$this">
+
+    <!-- 功能 -->
+    <view class="m-menu" wx:if="{{(cards.length>0 || channel.length > 0) && config.block == 'menu'}}">
+
+      <view catchtap="addCard" hover-class="navigator-hover" wx:if="{{cards.length>0}}" class="item">
+        <image-o src="https://oss.qianbaocard.org/20180919/b6c1e09da48849a6b31e35a90819a253.png" resize="w:64"/>
+        <text>会员卡</text>
+      </view>
+      <block wx:for="{{channel}}" wx:for-index="idx" wx:if="{{idx<5}}" wx:key="{{item.id}}">
+        <!-- 预约 -->
+        <view class="item" wx:if="{{item.id === 'h4'}}" bindtap="contactUs">
+          <image-o src="{{item.picUrl}}" resize="w:64"/>
+          <text>{{item.title}}</text>
+        </view>
+        <view class="item" wx:elif="{{item.id === 'h46'}}" bindtap="qrPay">
+          <image-o src="{{item.picUrl}}" resize="w:64"/>
+          <text>{{item.title}}</text>
+        </view>
+        <navigator class="item" url="{{item.linkUrl}}" open-type="{{item.openType}}" wx:else>
+          <image-o src="{{item.picUrl}}" resize="w:64"/>
+          <text>{{item.title}}</text>
+        </navigator>
+      </block>
+    </view>
+
+    <!-- 广告轮播 -->
+      <view wx:if="{{config.block == 'banner'}}">
+        <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000" indicator-color="rgba(255,255,255,0.7)" indicator-active-color="rgba(255,255,255,1)">
+          <swiper-item wx:for="{{banner}}" wx:if="{{index < 8}}" wx:key="$this">
+            <navigator url="{{item.formatPath}}">
+              <image-o src="{{item.body}}" resize="h:336" err-src="../../static/images/onerror.png" mode="aspectFill" />
+            </navigator>
+          </swiper-item>
+        </swiper>
+      </view>
+
+       <!-- 门店 -->
+      <view class="a-section a-brand {{shops.length==1?'a-top':''}}" wx:if="{{config.block == 'shops' && shops.length > 0}}">
+          <view class="h" wx:if="{{shops.length >1}}">
+            <navigator url="../shop/shop" class=".nav">
+              <image src="../../static/images/home_title_shop.png"></image>
+              <text class="txt">{{(!config.title || config.title == '店铺') ? (brandName + '门店') : config.title}}</text>
+              <view class="more">
+                <text>查看更多</text>
+                <icon class="qb-icon qb-icon-nextx" />
+              </view>
+            </navigator>
+          </view>
+        <navigator class="shop" wx:if="{{shops.length==1}}" url="/pages/shopDetail/shopDetail?id={{shops[0].id}}">
+          <view class="shop-name">
+            <text class="n">{{shops[0].location.province.name}}{{shops[0].location.area.name}}{{shops[0].seller.name}}</text>
+            <text class="shop-address">{{shops[0].location.province.name}}{{shops[0].location.area.name}}{{shops[0].way}}</text>
+          </view>
+          <view class="distance">
+            <text>1.0km</text>
+            <image src="../../static/images/addres.png"></image>
+          </view>
+        </navigator>
+      <view class="b" wx:if="{{shops.length>1}}">
+        <scroll-view scroll-x="{{true}}" class="list" bindscrolltolower="scrolltolower">
+          <view class="item" wx:for="{{shops}}"  data-item="{{item}}" wx:for-index="idx"  wx:key="$this">
+            <navigator wx:if="{{!item.mock}}" url="/pages/shopDetail/shopDetail?id={{item.id}}">
+              <view class="wrap">
+                <image-o o-class="img" src="{{item.media[0].url}}" resize="w:350" err-src="../../static/images/onerror.png" mode="aspectFill" />
+                <view class="np">
+                  <image src="../../static/images/addres.png"></image>
+                  <text class="name">{{item.location.province.name+item.location.area.name+item.branchName}}</text>
+                </view>
+              </view>
+            </navigator>
+            <view wx:if="{{item.mock}}">
+              <view class="wrap">
+                <image-o o-class="img" src="{{item.media[0].url}}" resize="w:350" err-src="../../static/images/onerror.png" mode="aspectFill" />
+                <view class="np">
+                  <text class="name">{{item.name}}</text>
+                  <text class="price">{{item.floor_price}}</text>
+                  <text class="unit">{{introduce}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+      </view>
+
+      <!-- 热门 -->
+      <view class="a-section a-popular" wx:if="{{config.block == 'hotGoods' && hotGoods.length > 0}}">
+        <view class="h">
+          <view>
+            <view url="/pages/orderMenu/orderMenu" open-type="switchTab">
+              <image src="../../static/images/home_title_hot.png"></image>
+              <!-- <icon class="qb-icon qb-icon-zhaopaix" /> -->
+              <text class="txt">{{config.title}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="b">
+          <view class="item" bindtap="showPreview" data-item="{{item}}" wx:for="{{hotGoods}}" wx:if="{{idx < 6}}" wx:for-index="index" wx:for-item="item" wx:key="$this" wx:for-index="idx">
+              <view class="wrap">
+                <image-o o-class="img" src="{{item.media[0].url}}" resize="w:240" err-src="../../static/images/onerror.png" mode="aspectFill" />
+                <view class="np">
+                  <text class="name">{{item.name}}</text>
+                  <!-- <text class="price">￥{{item.price / 100}}</text> -->
+                  <view class="eat takeout" wx:if="{{item.productsort=='外卖'}}">{{item.productsort}}</view>
+                  <view class="eat dine" wx:if="{{item.productsort=='堂食'}}">{{item.productsort}}</view>
+                  <view class="eat mall" wx:if="{{item.productsort=='商城'}}">{{item.productsort}}</view>
+                </view>
+              </view>
+            </view>
+        </view>
+      </view>
+
+      <!-- 新品 -->
+      <view class="a-section a-new" wx:if="{{config.block == 'newGoods' && newGoods.length > 0}}">
+        <view class="h">
+          <view>
+            <view>
+              <image src="../../static/images/home_title_new.png"></image>
+              <text class="txt">{{config.title}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="b">
+        <scroll-view scroll-x="{{true}}" class="list" bindscrolltolower="scrolltolower">
+          <view class="item" wx:for="{{newGoods}}" wx:for-index="index" wx:for-item="item" wx:key="$this" wx:for-index="idx" wx:if="{{idx<4}}">
+            <view url="../goods/goods?id={{item.id}}" bindtap="showPreview" data-item="{{item}}">
+              <image-o o-class="img" src="{{item.media[0].url}}" resize="w:330" err-src="../../static/images/onerror.png" mode="aspectFill" />
+              <view class="np">
+                <text class="name">{{item.name}}</text>
+                <text class="price">￥{{item.price / 100}}</text>
+              </view>
+              <!-- <view class="eat {{productsort=='外卖' ? 'takeout':'dine'}}">{{productsort}}</view> -->
+              <view class="eat takeout" wx:if="{{item.productsort=='外卖'}}">{{item.productsort}}</view>
+              <view class="eat dine" wx:if="{{item.productsort=='堂食'}}">{{item.productsort}}</view>
+              <view class="eat mall" wx:if="{{item.productsort=='商城'}}">{{item.productsort}}</view>
+            </view>
+          </view>
+        </scroll-view>
+        </view>
+      </view>
+
+      <!-- 专题 -->
+      <view class="a-section a-topic" wx:if="{{config.block == 'topics' && topics.length > 0}}">
+        <view class="h">
+          <view>
+            <navigator wx:if="{{topics.length > 6}}" url="../topic/topic" open-type="switchTab" class=".nav">
+              <!-- <icon class="qb-icon qb-icon-dongtaix" /> -->
+              <image src="../../static/images/home_title_topic.png"></image>
+              <text class="txt">{{config.title}}</text>
+              <view class="more">
+                <text>查看更多</text>
+                <icon class="qb-icon qb-icon-nextx" />
+              </view>
+            </navigator>
+            <view wx:if="{{topics.length <=6}}">
+              <image src="../../static/images/home_title_topic.png"></image>
+              <text class="txt">{{config.title}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="b">
+          <scroll-view scroll-x="true" class="list">
+            <view class="item" wx:for="{{topics}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}" wx:for-index="idx" wx:if="{{idx<6}}">
+              <navigator url="../topicDetail/topicDetail?id={{item.id}}">
+                <image-o o-class="img" src="{{item.preview}}" resize="h:387" err-src="../../static/images/onerror.png" />
+                <view class="np">
+                  <text class="name">{{item.title}}</text>
+                <!--  <text class="price"></text> -->
+                </view>
+                <!-- <text class="desc">{{item.summary}}</text> -->
+              </navigator>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+
+    
+  </block>
+
+  <view class="bottom">——由钱包生活提供技术支持——</view>
+
+
+  <view class="preview-model" catchtouchmove="stop" wx:if="{{isPreviewing}}" animation="{{previewAnimationData}}">
+    <view class="preview-model-content" animation="{{animationData}}">
+      <view class="close"></view>
+      <image-o src="{{currentPrewiewGoods.media[0].url}}" mode="scaleToFill" resize="h:480" err-src="../../static/images/onerror.png" />
+      <view class="name">{{currentPrewiewGoods.name}}</view>
+      <view class="info">
+        <text class="price">￥{{currentPrewiewGoods.price / 100}}</text>
+
+        <view class="gocatelog" bindtap="gocatelog" style="background: {{mainColor}};">去点餐</view>
+      </view>
+    </view>
+    <view class="bg" bindtap="hidePreview"></view>
+  </view>
+
+</view>
+
+<view class='dialog' wx:if='{{coupons.length > 0 && shouldShow}}' catchtouchmove='preventTouchMove'>
+
+  <view class='content' style='background: rgba(255,255,255,1);'>
+    <view class='title'>
+      <view class='line_left' style='background:rgba(67,67,67,1);'></view>
+      <view class='title_title' style='color:rgba(67,67,67,1);'>{{isNewUserCoupon ? "新用户专享":"分享有礼"}}</view>
+      <view class='line_right' style='background:rgba(67,67,67,1);'></view>
+    </view>
+    <view class='coupons' style='background:rgba(249,249,249,1);'>
+      <scroll-view scroll-y="{{true}}" style='max-height: 560rpx;' scroll-x="{{false}}">
+        <coupons coupons="{{coupons}}"
+        middleColor="rgba(249,249,249,1)"
+         showMiddle='{{true}}'
+         couponsTitleColor='rgba(67,67,67,1)'> </coupons>
+      </scroll-view>
+    </view>
+    <button class='get' wx:if='{{!haveGetCoupon}}' style='background: rgba(67,67,67,1);color: white;' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">立即领取</button>
+    <view class='alreadygetCoupons' wx:if='{{haveGetCoupon}}'>
+      <button  class='share' open-type='share'  style='background:white;color:black' data-shareId='shareCoupon'>分享好友</button>
+      <button bindtap='browerShop' class='close' style='background:black;color:white'>进店逛逛</button>
+    </view>
+  </view>
+
+</view>

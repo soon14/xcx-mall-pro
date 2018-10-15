@@ -1,0 +1,12 @@
+<!--pages/ucenter/userCouponsList/userCouponsList.wxml-->
+<view class='body'>
+    <view class='couponsList'>
+      <coupons coupons='{{coupons}}' itemHeight='196' showUse='{{true}}'
+        showMiddle ='{{true}}' middleColor='rgba(249,249,249,1)'
+        bind:singleSelected='singleSelected'>
+      </coupons>
+    </view>
+    <!-- <view class='share'>
+      <button class='share_content' open-type='share'>分享好友领券</button>
+    </view> -->
+</view>

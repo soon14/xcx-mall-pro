@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "买单",
+	"usingComponents": {
+		"homepage": "/component/homepage/homepage"
+	}
+}

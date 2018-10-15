@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "商户详情",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "usingComponents": {
+    "image-o": "/component/image-o/image-o",
+    "auth": "/component/auth/auth"
+  }
+}

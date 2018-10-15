@@ -1,0 +1,18 @@
+<!--pages/ucenter/selectCoupons/selectCoupons.wxml-->
+<view class='body'>
+<view style="position:fixed;top:0;height:100rpx;widith:100%;left:0;right:0;z-index:10;">
+  <view class='title' bindtap='onUnuseCouponClick'>
+    <view class='tip'>不使用红包</view>
+    <checkbox checked='{{unUseCoupon}}'></checkbox>
+  </view>
+</view>
+
+    <view class='couponList'>
+        <coupons coupons='{{coupons}}'
+        allowCheck='{{!unUseCoupon}}'
+        bind:singleSelected='singleSelected'
+        bind:MultiSelected ="multiSelected"
+        itemHeight='206'>
+        </coupons>
+    </view>
+</view>

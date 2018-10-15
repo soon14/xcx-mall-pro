@@ -1,0 +1,150 @@
+<scroll-view class="container" scroll-y="true">
+  <view wx:if="{{!openAttr}}">
+    <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+      <swiper-item wx:for="{{place.gallery}}" wx:key="$this">
+        <image bindtap="previewImage" data-src="{{item}}" data-list="{{place.gallery}}" src="{{item}}" background-size="cover"></image>
+      </swiper-item>
+    </swiper>
+    <view class="service-policy">
+      <view class="item">桌台: {{place.name}}</view>
+      <view class="item">规格: {{place.userLimit}}人</view>
+      <view class="item">状态: 可预订</view>
+    </view>
+    <view class="tips">
+      <text wx:for="{{place.tips}}" wx:key="$this">{{item}}</text>
+    </view>
+    <image class="phone" src="../../static/images/phone.png" bindtap="makePhoneCall"></image>
+    <!-- <view class="comments" wx:if="{{comment.count > 0}}">
+      <view class="h">
+        <navigator url="../comment/comment?valueId={{table.id}}&typeId=0">
+          <text class="t">评价({{comment.count > 999 ? '999+' : comment.count}})</text>
+          <text class="i">查看全部</text>
+        </navigator>
+      </view>
+      <view class="b">
+        <view class="item">
+          <view class="info">
+            <view class="user">
+              <image src="{{comment.data.avatar}}"></image>
+              <text>{{comment.data.nickname}}</text>
+            </view>
+            <view class="time">{{comment.data.add_time}}</view>
+          </view>
+          <view class="content">
+            {{comment.data.content}}
+          </view>
+          <view class="imgs" wx:if="{{comment.data.pic_list.length > 0}}">
+            <image class="img"  wx:for="{{comment.data.pic_list}}" wx:key="{{item.id}}" src="{{item.pic_url}}"></image>
+          </view>
+        </view>
+      </view>
+    </view> -->
+    <view class="detail">
+      <view class="title">简介</view>
+      <import src="../../lib/wxParse/wxParse.wxml" />
+      <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
+    </view>
+    
+    <view class="address">
+      <view class="title">地址信息</view>
+      <view>地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息地址信息</view>
+    </view>
+    <view class="map_wrap">
+      <map id="map" longitude="{{shop.location.longitude}}" latitude="{{shop.location.latitude}}" scale="{{scale}}" markers="{{markers}}" controls="{{controls}}" bindcontroltap="controltap" show-location style="margin:0 30rpx;width: auto; height: 100%;"></map>
+    </view>
+  </view>
+  <view wx:if="{{openAttr}}" class="attr-pop">
+        <view class="img-info" style="display: none">
+          <image class="img" src="{{place.media[0].url}}"></image>
+          <view class="info">
+            <view class="c">
+              <view class="p">桌台：{{place.name}}</view>
+              <view class="a">桌号：{{place.id}}</view>
+            </view>
+          </view>
+        </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" value="{{name}}" data-name="name" bindinput="changeValue" bindblur="validValue" data-toast="请输入1-10个字符的姓名" placeholder="姓名" />
+                </view>
+                <view class="weui-cell__ft">
+                    <icon type="warn" size="23" color="#E64340" wx:if="{{!validate.name}}" data-toast="请输入1-10个字符的姓名" bindtap="toast"></icon>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="number" value="{{phone}}" data-name="phone" bindinput="changeValue" bindblur="validValue" data-toast="手机号格式有误" placeholder="手机号" />
+                </view>
+                <view class="weui-cell__ft">
+                    <icon type="warn" size="23" color="#E64340" wx:if="{{!validate.phone}}" data-toast="手机号格式有误" bindtap="toast"></icon>
+                </view>
+                <!-- <view class="weui-cell__ft">
+                    <view class="weui-vcode-btn">获取验证码</view>
+                </view> -->
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <!-- <view class="weui-cell__hd">
+                    <view class="weui-label">日期</view>
+                </view> -->
+                <view class="weui-cell__bd">
+                    <picker mode="date" value="{{date}}" start="{{nowDate}}" end="{{endDate}}" bindchange="bindDateChange">
+                        <view class="weui-input" wx:if="{{!dataIsNull}}">{{date}}</view>
+                        <view  wx:if="{{dataIsNull}}" style="color: #999;font-weight: 400">用餐日期(预约一周内)</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <!-- <view class="weui-cell__hd">
+                    <view class="weui-label">用餐时间</view>
+                </view> -->
+                <view class="weui-cell__bd">
+                    <picker mode="time" value="{{startTime}}" start="9:00" end="20:00" bindchange="bindTimeChange">
+                        <view class="weui-input" wx:if="{{!startTimeIsNull}}">{{startTime}} - {{endTime}}（默认两小时）</view>
+                        <view wx:if="{{startTimeIsNull}}" style="color: #999;font-weight: 400">用餐时间</view>
+                    </picker>
+                </view>
+                <!-- <view class="weui-cell__hd">
+                    <view class="weui-label">结束时间</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="time" value="{{endTime}}" start="{{startTime}}" end="24:00" disabled bindchange="bindTimeChange2">
+                        <view class="weui-input">{{endTime}}</view>
+                    </picker>
+                </view> -->
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="number" value="{{peopleNum}}" data-name="peopleNum" bindinput="changeValue" bindblur="validValue" data-toast="请输入不大于{{place.userLimit}}的数字"placeholder="用餐人数" />
+                </view>
+                <view class="weui-cell__ft">
+                    <icon type="warn" size="23" color="#E64340" wx:if="{{!validate.peopleNum}}" data-toast="请输入不大于{{place.userLimit}}的数字" bindtap="toast"></icon>
+                </view>
+            </view>
+            
+            <!-- <view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="number" data-name="number" bindinput="changeValue" bindblur="validValue" value="{{verification}}" placeholder="验证码" />
+                </view>
+            </view> -->
+            <view class="weui-cell" style="padding-left:20rpx">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" maxlength="200" value="{{message}}" placeholder="给商家留言" data-name="message" bindinput="changeValue" style="min-height: 200rpx;padding: 0" />
+                    <view class="weui-textarea-counter">0/200</view>
+                </view>
+            </view>
+
+  </view>
+</scroll-view>
+ <view class="bottom-btn">
+    <view class="l l-collect {{ openAttr ? 'back' : ''}}" bindtap="closeAttrOrCollect">
+      <image class="icon" src="{{ collectBackImage }}"></image>
+    </view>
+    <view class="l l-cart">
+      <view class="box">
+        <image bindtap="opencatalogPage" class="icon" src="/static/images/ic_menu_choice_nor.png"></image>
+
+      </view>
+    </view>
+    <view class="c"><button open-type="share" class="share">分享好友</button></view>
+    <view class="r" bindtap="addToCart" style="background: {{mainColor}};border-color:{{mainColor}}">立刻预约</view>
+  </view>

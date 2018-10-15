@@ -1,0 +1,20 @@
+.nodata-wrap {
+	height: 100%;
+	background: #F8F8F8;
+	text-align: center;
+}
+
+.nodata-wrap image {
+	width: 280rpx;
+	height: 250rpx;
+	margin-top: 146rpx;
+	margin-bottom: 28rpx;
+}
+
+.nodata-wrap .t {
+	height:34rpx; 
+	font-size:24rpx;
+	font-family:PingFangSC-Regular;
+	color:rgba(153,153,153,1);
+	line-height:34rpx;
+}

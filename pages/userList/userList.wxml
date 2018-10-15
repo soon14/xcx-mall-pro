@@ -1,0 +1,11 @@
+<view class="container">
+	<view class="ul" wx:if="{{activity.actors.length > 0}}">
+		<view class="li" wx:for="{{activity.actors}}" wx:key="$this" bindtap="imagePreview" data-src="{{item.avatar}}" data-images="{{activity.actors}}">
+			<image src="{{item.avatar}}" mode="scaleToFill"></image>
+			<text>{{item.nickName}}</text>
+		</view>
+	</view>
+	<view class="weui-loadmore weui-loadmore_line" wx:if="{{activity.actors.length == 0}}">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无成员</view>
+    </view>
+</view>

@@ -1,0 +1,62 @@
+<view class="container">
+  <homepage/>
+  <view class='wifi-info'>
+    <view class='wifi-flex'>
+      <view class='wifi-title'>门店名称</view>
+
+			<view class='wifi-flex-right'>
+				<picker bindchange="bindPickerChangeWifiShop" value="{{shopIndex}}" range="{{shops}}" range-key="showName">
+        	<view class="wifi-value">
+          	{{shops[shopIndex].showName}}
+        	</view>
+      	</picker>
+				<view><image class='icon-right' src="/static/images/wifi_right.png"></image></view>
+			</view>
+			
+    </view>
+  
+    <view class='wifi-flex'>
+      <view class='wifi-title'>WI-FI 名称</view>
+
+			<view class='wifi-flex-right'>
+				<picker bindchange="bindPickerChangeWifi" value="{{wifiIndex}}" range="{{wifis}}" range-key="ssid">
+        	<view class="wifi-value">
+          	{{wifis[wifiIndex].ssid}}
+        	</view>
+      	</picker>
+				<view><image class='icon-right' src="/static/images/wifi_right.png"></image></view>
+			</view>
+
+    </view>
+  </view>
+
+  <auth a-class='wifi-ok' bindfinish="wifiClickOK">
+    确定
+  </auth>
+
+  <view class="preview-model" catchtouchmove="stop" wx:if="{{showWifiDetail}}" animation="{{previewAnimationData}}">
+    <view class="wifi-content" animation="{{animationData}}">
+    <view class='wifi-info'>
+      <view class='wifi-flex'>
+        <view>WIFI账号</view>
+          <view>{{wifi.ssid}}</view>
+        </view>
+      
+        <view class='wifi-flex'>
+          <view>WIFI密码</view>
+          <view>{{wifi.password}}</view>
+        </view>
+      </view>
+
+      <view class='wifi-btn'>
+        <view class='wifi-copy' bindtap='wifiPwdCopy'>复制密码</view>
+      </view>
+
+    </view>
+    <view class="bg" bindtap="hideWifiDetail"></view>
+  </view> 
+
+
+</view>
+
+

@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+      "coupons": "../../../component/coupon/coupon"
+    },
+  "navigationBarTitleText": "提交订单",
+  "enablePullDownRefresh": false
+}

@@ -1,0 +1,56 @@
+<import src="/pages/menu/menu.wxml" />
+
+<view class="container">
+
+  <view class="service-policy" wx:if="{{activity}}">
+    <view class="item">当前桌台：{{place.name}}</view>
+    <view class="item" bindtap="goUsers" wx:if="{{isShare}}">点餐人数：{{activity.actors.length}}</view>
+    <view class="item" bindtap="goUsers" wx:if="{{!isShare}}"></view>
+    <view class="item" bindtap="leave">
+      <icon class="qb-icon qb-icon-084tuichu" /> 
+      退出点餐
+    </view>
+  </view>
+
+  <button open-type="share" class="share" style="background: {{mainColor}};" wx:if="{{activity && isShare}}">
+    分享桌台
+    <!-- <image class="" src="/sta" mode="scaleToFill"></image> -->
+  </button>
+
+  <view class="catalog" style="top:{{activity ? '64rpx': '0'}};bottom: {{activity ? '100rpx': '0'}};">
+    
+    <template is="category" data="{{currentCategory,navList}}"></template>
+    <template is="product" data="{{cataType,goodsList,mainColor,isLoading,noMoreData,canEdit: shop.dineConfig.enabled,categoryName:navname}}"></template>
+    
+  </view>
+  <view class="model" wx:if="{{isShow}}">
+    <view class="list" animation="{{modelAnimation}}">
+
+      <template is="menu" data="{{title:'现有'+activity.actors.length+'人点餐',menuList:dineList,mainColor}}"/>
+
+    </view>
+    <view class="bg" animation="{{modelbgAnimation}}" bindtap="hide" bindtouchstart="showList"></view>
+  </view>
+
+  <template is="cashier" data="{{number:totleLength,money:totle,btnColor:mainColor,btnTitle:'去结算'}}" wx:if="{{activity}}"/>
+
+  <view class="preview-model" catchtouchmove="stop" animation="{{previewAnimationData}}" wx:if="{{showAddParam}}">
+    <view class="preview-model-content" animation="{{animationData}}">
+      <template is="paramChoice" data="{{product:productTmp,norms:param.norms,attrs:param.attrs,mainColor,price:param.price}}"/>
+      
+    </view>
+    <view class="bg" bindtap="hideToast"></view>
+  </view>
+
+  <view class="auth-model" wx:if="{{!isAuth}}">
+    <view class="bg"></view>
+    <view class="auth-content">
+      <view class="auth-title">登录提示</view>
+      <view class="auth-info">您还未登录，快去登录吧</view>
+      <view class="auth-btn">
+        <button plain="true" hover-class="none" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">微信登录</button>
+      </view>
+    </view>
+  </view>
+
+</view>

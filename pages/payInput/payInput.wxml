@@ -1,0 +1,34 @@
+<view class='container'>
+  <homepage/>
+  <view class='address'>
+    <image src="../../static/images/addres.png"/>
+    <text class="address-shop">{{address}}</text>
+  </view>
+
+  <view class='input-info'>
+    
+    <view class='flex'>
+      <view class='input-tip'>输入金额:</view>
+      <input class='input-money' type="digit" placeholder='询问店员后输入' bindinput='inputTotal'/>
+      <view class='input-unit'>元</view>
+    </view>
+
+    <!-- <view class='flex'>
+      <view class='input-tip'>不参与优惠金额</view>
+      <input class='input-money' type="digit" placeholder='请输入金额' bindinput='inputExclude'/>
+      <view> 元</view>
+    </view>
+
+    <view class='flex'>
+      <view>会员折扣：{{refundTip}}</view>
+      <view>{{refund}}元</view>
+    </view> -->
+
+  </view>
+
+  <button hover-class="none" class='btn-pay' style='background: {{mainColor}};'  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+    确定
+  </button>
+
+</view>
+

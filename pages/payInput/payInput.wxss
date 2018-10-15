@@ -1,0 +1,77 @@
+
+page{
+    min-height: 100%;
+    width: 100%;
+    background: #f4f4f4;
+}
+
+/* .container{
+    padding:50rpx 40rpx;
+    background: #f4f4f4;
+} */
+
+.address {
+    display:flex;
+    justify-content: center;
+    align-items: flex-top;
+    margin-top:32rpx;
+}
+.address image{
+  height:32rpx;
+  width:32rpx;
+  margin-right:16rpx;
+}
+.address .address-shop{
+  text-align:center; 
+  font-size: 28rpx;
+  color: #999999;
+}
+.flex{
+    display:flex;
+    justify-content:space-between; 
+    align-items: center;
+    height: 136rpx;
+    line-height: 136rpx;
+}
+
+.input-info{
+  margin: 0rpx 32rpx;
+  margin-top: 25rpx;
+  background: white;
+  border-radius: 8rpx;
+}
+
+.input-tip{
+  margin-left:32rpx;
+}
+
+.input-money{
+  flex: 1;
+  text-align: right;
+}
+
+.input-unit{
+  width: 50rpx;
+  text-align: right;
+  margin-right: 32rpx;
+}
+
+.container view text{
+  color:#fff;
+  font-size: 30rpx;
+}
+
+
+/*.container button{*/
+.btn-pay{
+    border-color:white;
+    text-align:center; 
+    height: 80rpx;
+    line-height:80rpx;
+    border-radius: 8rpx; 
+    margin:0 32rpx;
+    margin-top:64rpx;
+    color: white;
+    font-size: 32rpx;
+}
+

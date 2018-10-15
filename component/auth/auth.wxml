@@ -1,0 +1,8 @@
+<!--component/auth/auth.wxml-->
+<button class="a-class button" style="a-style" wx:if="{{!isAuth}}" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">
+	<slot/>
+</button>
+
+<view class="a-class" style="a-style" wx:if="{{isAuth}}" bindtap="onTap">
+	<slot/>
+</view>

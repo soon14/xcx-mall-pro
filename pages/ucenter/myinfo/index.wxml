@@ -1,0 +1,111 @@
+<view class="container">
+  <view class="profile-info" style="background: {{mainColor}};">
+    <button class="avatar-btn" size="mini" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+      <image class="avatar" src="{{userInfo.user.avatar}}"></image>
+    </button>
+    <view class="info" wx:if="{{userInfo.user.nickName}}">
+      <text class="name">{{userInfo.user.nickName}}</text>
+      <text class="name" wx:if="{{phone}}">{{phone}}</text>
+      <button wx:if="{{userInfo.user.nickName && !phone}}" open-type="getPhoneNumber" class='getPhoneNumber' style="color: {{mainColor}};" bindgetphonenumber="getPhoneNumber">绑定手机</button>
+    </view>
+  </view>
+
+  <view wx:if="{{!isAuth}}">
+    <view class="auth-tips">需要您授权以便使用您的用户信息</view>
+    <button type="primary" class="auth-btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">前往授权</button>
+  </view>
+
+  <view class="user-menu" wx:if="{{isAuth}}">
+    <view wx:if="{{cards.length>0}}"  hover-class="navigator-hover" class="item" catchtap="addCard">
+      <view class="a">
+        <image class="icon" src="https://cdn.it120.cc/apifactory/2018/03/07/54163adc7ae78c1a79af7856a4dfdab5.png"></image>
+        <text class="txt">会员卡</text>
+      </view>
+    </view>
+    <view class="item" wx:for="{{channelList}}"  wx:for-item="item" wx:key="{{item.id}}">
+      <!-- 优惠券 -->
+      <navigator url="{{item.linkUrl}}" wx:if="{{item.id == 'h2'}}" class="a">
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </navigator>
+         <!-- 外卖 -->
+<navigator url="{{item.linkUrl}}" wx:if="{{item.id == 'h47'}}" open-type="{{item.openType}}" class="a">
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </navigator>
+
+      <!-- 我的订单 -->
+      <navigator url="{{item.linkUrl}}" wx:if="{{item.id == 'h3'}}" class="a">
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </navigator>
+
+      <!-- 我的预约 -->
+      <navigator url="{{item.linkUrl}}" wx:if="{{item.id == 'h4'}}" class="a">
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </navigator>
+
+      <!-- 我的收藏 -->
+      <navigator url="{{item.linkUrl}}" wx:if="{{item.id == 'h5'}}" class="a">
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </navigator>
+
+      <!-- 我的足迹 -->
+      <navigator url="{{item.linkUrl}}" wx:if="{{item.id == 'h6'}}" class="a">
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </navigator>
+
+      <!-- 帮助中心 -->
+      <view class="a" hover-class="navigator-hover" wx:if="{{item.id == 'h7'}}" bindtap="stayYuned">
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </view>
+
+      <!-- 意见反馈 -->
+      <navigator url="{{item.linkUrl}}" wx:if="{{item.id == 'h8'}}" class="a">
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </navigator>
+
+      <!-- 联系客服 -->
+      <button plain="{{true}}" class="a" hover-class="navigator-hover" wx:if="{{item.id == 'h9'}}" open-type='contact' show-message-card="{{true}}" send-message-title="我的" session-from='{"sellerId":"{{userInfo.seller.id}}","userId":"{{userInfo.user.id}}","sellerName":"{{userInfo.seller.name}}","nickName":"{{userInfo.user.nickName}}","avatar":"{{userInfo.user.avatar}}"}'>
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </button>
+
+      <!-- 联系我们 -->
+      <view class="a" hover-class="navigator-hover" wx:if="{{item.id == 'h10'}}" bindtap="contactUs">
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </view>
+
+      <!-- WI-FI -->
+      <navigator url="{{item.linkUrl}}" wx:if="{{item.id == 'h45'}}" class="a">
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </navigator>
+
+      <!-- 扫码买单 -->
+      <view class="a" hover-class="navigator-hover" wx:if="{{item.id == 'h46'}}" bindtap="qrPay">
+        <image class="icon" src="{{item.picUrl}}"></image>
+        <text class="txt">{{item.title}}</text>
+      </view>
+
+    </view>
+  </view>
+
+<!--
+<contact-button
+  size="20"
+  session-from="weapp"
+>
+</contact-button>  -->
+
+  <view class="logout" bindtap='reset'>清除缓存</view>
+  <view class="version">版本号: v1.0.20180911</view>
+</view>
+
+

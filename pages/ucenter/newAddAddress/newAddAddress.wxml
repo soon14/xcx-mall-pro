@@ -1,0 +1,55 @@
+<!--pages/ucenter/addAddress/addAddress.wxml-->
+<view class="add-address">
+  <view class="add-form">
+
+    <view class="form-item">
+      <view class='add-name'>联系人</view>
+      <input class="input" bindinput="bindinputName" placeholder="你的姓名" placeholder-style="color:#CCCCCC" value="{{address.name}}" maxlength='11' auto-focus/>
+    </view>
+
+    <view class="form-item">
+      <radio-group class="radio-group" bindchange="listenerRadioGroup" style="display: flex; flex-direction: row;">
+        <!--label通常与radio和checkbox结合使用-->
+        <label style="display: flex;align-items:center" wx:for-items="{{array}}">
+          <text class='text-boygirl'>{{item.value}}</text>
+          <radio class='radio' value="{{item.name}}" checked="{{item.checked}}" color='#434343' />
+        </label>
+      </radio-group>
+    </view>
+
+    <view class="form-item">
+      <view class='add-name'>电话</view>
+      <input class="input" bindinput="bindinputMobile" value="{{address.mobile}}" placeholder="你的手机号" placeholder-style="color:#CCCCCC" maxlength='11' type='number' />
+    </view>
+    <view class="form-item">
+      <view class='add-name'>地址</view>
+      <!-- <input class="input" value="{{locationAddress}}" disabled="true" bindtap="chooseRegion" placeholder="省份、城市、区县" /> -->
+      <input class="input"  value="{{address.locationAddress}}" placeholder="小区/学校/公司等" placeholder-style="color:#CCCCCC" />
+      <view class='address-container' bindtap="chooseAddress">
+        <view class='r'>
+          <!-- <text class="text-choose">{{address.locationAddress}}</text> -->
+          <text class="icon-address"></text>
+          <!-- <image class='i' src='../../../static/images/address_right.png' background-size="cover"></image> -->
+        </view>
+      </view>
+    </view>
+    <view class="form-item">
+      <view class='add-name'>门牌</view>
+      <input class="input" bindinput="bindinputAddress" value="{{address.detailAddress}}" placeholder="16号楼5层301室" placeholder-style="color:#CCCCCC" maxlength='30' />
+      <view class='address-container' bindtap="chooseAddress">
+         <text class="icon-edit"></text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="btns">
+    <button class="save" bindtap="saveAddress">保存并使用</button>
+  </view>
+  <!-- <view class="btns" wx:if="{{address.id==0}}">
+    <button class="changebutton" bindtap="getWeixinAddress">获取微信收货地址</button>
+  </view> -->
+  <view class="btns btn-del" wx:if="{{address.id!=0}}">
+    <button class="changebutton" bindtap="deleteAddress" data-address-id="{{address.id}}">删除地址</button>
+  </view>
+
+</view>

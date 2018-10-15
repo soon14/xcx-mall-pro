@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "礼品商城",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "usingComponents": {
+    "image-o": "/component/image-o/image-o"
+  }
+}

@@ -1,0 +1,117 @@
+<view class="container">
+    <view class="shop-info">
+        <view class="name">
+            <image class="img" src="{{shop.media[0].url}}?x-oss-process=image/resize,w_750" background-size="cover"></image>
+            <!-- <view class="info-box">
+                <view class="info">
+                    <text class="txt">{{showName}}</text>
+                    <text class="line"></text>
+                </view>
+            </view> -->
+        </view>
+        <!-- <view class="desc">
+            {{shop.description}}
+        </view> -->
+    </view>
+    <!-- <view class="header-title">
+      <view class="img-wrap">
+        <image src="{{shop.media[0].url}}?x-oss-process=image/resize,w_100" mode="scaleToFill"></image>
+      </view>
+      <view>
+        <view class="t">{{showName}}</view>
+        <view class="v">人均：￥{{shop.avgPrice / 100}}</view>
+      </view>
+    </view> -->
+    <view class="weui-form-preview">
+      <!-- <view class="weui-form-preview__hd">
+          <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">门店信息</view>
+              <view class="weui-form-preview__value_in-hd">¥2400.00</view>
+          </view>
+      </view> -->
+      <view class="weui-form-preview__bd">
+          <!-- <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">人均</view>
+              <view class="weui-form-preview__value">{{shop.avgPrice}}</view>
+          </view> -->
+            <view class="weui-form-preview__item" bindtap="phoneClick">
+              <view class="weui-form-preview__label">商家电话</view>
+              <view class="weui-form-preview__value">1763399264</view>
+              <view class="right">
+                <image src="../../static/images/phone1.png"></image>
+              </view>
+            </view>
+           <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">商家地址</view>
+              <view class="weui-form-preview__value">{{shop.location.province.name+shop.location.area.name+shop.branchName}}</view>
+             <view class="right">
+               <image src="../../static/images/addres.png"></image>
+             </view>
+             
+            </view>
+             <view class="weui-form-preview__item" >
+              <view class="weui-form-preview__label">人均消费</view>
+              <view class="weui-form-preview__value">￥{{shop.avgPrice / 100}}</view>
+            </view>
+            <!-- <view class="weui-form-preview__item" >
+              <view class="weui-form-preview__label">经营类目</view>
+              <view class="weui-form-preview__value">餐饮</view>
+              <icon class="qb-icon qb-icon-nextx"/>
+            </view> -->
+            <view class="weui-form-preview__item-time" >
+              <view class="weui-form-preview__label">营业时间</view>
+              <view class="weui-form-preview__value" wx:for="{{shop.bizTimes}}">
+                <view class="week-time">
+                  <block wx:for="{{item.weekdays}}" wx:for-item="itemName" wx:key="*this">
+                    <view wx:if="{{itemName==1}}">周一、</view>
+                    <view wx:if="{{itemName==2}}">周二、</view>
+                    <view wx:if="{{itemName==3}}">周三、</view>
+                    <view wx:if="{{itemName==4}}">周四、</view>
+                    <view wx:if="{{itemName==5}}">周五、</view>
+                    <view wx:if="{{itemName==6}}">周六、</view>
+                    <view wx:if="{{itemName==7}}">周日</view>
+                  </block>
+                </view>
+                <view class="buss-time">{{item.startTime}}-{{item.endTime}}</view>
+              </view>
+            </view>
+            <view class="weui-form-preview__item-desc" >
+              <view class="weui-form-preview__label">店铺简介</view>
+              <view class="weui-form-preview__description">
+                {{shop.description.length>0?shop.description:"暂无"}}
+              </view>
+            </view>
+            <view class="weui-form-preview__item1">
+              <view class="weui-form-preview__label">店内照片</view>
+              <view class="weui-form-preview__picture">
+                <scroll-view scroll-x="{{true}}" class="list" bindscrolltolower="scrolltolower">
+                <block wx:for="{{shop.media}}" wx:key="{{item.url}}">
+                    <image src="{{item.url}}"></image>
+                  </block>
+                </scroll-view>
+              </view>
+            </view>
+             <view class="weui-form-preview__item-desc" >
+              <view class="weui-form-preview__label">特色服务</view>
+              <view class="weui-form-preview__description">
+                  {{shop.features.length>0?shop.features:"暂无"}}
+              </view>
+            </view>
+      </view> 
+    </view>
+      
+
+    <!-- <map id="map" longitude="{{shop.location.longitude}}" latitude="{{shop.location.latitude}}" scale="{{scale}}" markers="{{markers}}" controls="{{controls}}" bindcontroltap="controltap" show-location ></map> -->
+
+    <!-- <view class="cate-item">
+        <view class="b">
+            <block wx:for="{{goodsList}}" wx:for-index="iindex" wx:for-item="iitem" wx:key="$this">
+            <navigator class="item {{iindex % 2 == 0 ? 'item-b' : ''}}" url="../goods/goods?id={{iitem.id}}">
+                <image class="img" src="{{iitem.pic}}" background-size="cover"></image>
+                <text class="name">{{iitem.name}}</text>
+                <text class="price">￥{{iitem.retail_price}}</text>
+            </navigator>
+            </block>
+        </view>
+    </view> -->
+</view>

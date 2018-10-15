@@ -1,0 +1,23 @@
+<!--pages/ucenter/addAddress/addAddress.wxml-->
+<view class="container">
+  <view class="preview-model">
+    <view class="preview-model-content">
+      <image src="{{currentPrewiewGoods.media[0].url}}"></image>
+      <view class="menuInfo">
+        <view class="info">
+          <view class="name">{{currentPrewiewGoods.name}}</view>
+          <text class="price">￥{{currentPrewiewGoods.price / 100}}</text>
+        </view>
+        <view class="cart">
+          <view class="gocatelog" bindtap="gocatelog" style="background: {{mainColor}};">加入购物车</view>
+        </view>
+       
+      </view>
+      
+    </view>
+  </view>
+ <view class="shopbottom">
+  <view class="title">菜品简介</view>
+  <view class="menuintroduce">{{currentPrewiewGoods.description}}</view>
+ </view>
+</view>

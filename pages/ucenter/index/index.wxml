@@ -1,0 +1,57 @@
+<view class="container">
+  <view class="profile-info" style="background:#FFFFFF;">
+    <view class="card-info">
+       <button class="avatar-btn" size="mini" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+        <image class="avatar" src="{{userInfo.user.avatar}}"></image>
+      </button>
+      <view class="info" wx:if="{{userInfo.user.nickName}}">
+        <text class="name">{{userInfo.user.nickName}}</text>
+        <text class="name" wx:if="{{phone}}">{{phone}}</text>
+        <button wx:if="{{userInfo.user.nickName && !phone}}" open-type="getPhoneNumber" class='getPhoneNumber' style="color: {{mainColor}};" bindgetphonenumber="getPhoneNumber">绑定手机</button>
+      </view>
+      <!-- <view class="point">
+          <text>开通会员</text>
+          <icon class="qb-icon qb-icon-nextx" />
+      </view> -->
+    </view>
+    <view class="menu" wx:if="{{isAuth}}">
+      <navigator  class="menu_item" url="/pages/ucenter/coupon/coupon">
+        <text>{{couponNum}}</text>
+        <view>优惠券</view>
+      </navigator>
+      <navigator  class="menu_item" url="/pages/ucenter/order/order">
+        <text>{{orderNum}}</text>
+        <view>我的订单</view>
+      </navigator>
+      <!-- <view  class="menu_item">
+        <text>8</text>
+        <view>我的收藏</view>
+      </view> -->
+    </view>
+  </view>
+  <view class="channel">
+    <!-- <view class="item">
+      <text>我的地址管理</text>
+      <icon class="qb-icon qb-icon-nextx" />
+    </view> -->
+    <view class="item" bindtap="contactUs">
+      <text>联系我们</text>
+      <icon class="qb-icon qb-icon-nextx"/>
+    </view>
+    <navigator class="item" target="miniProgram" open-type="navigate" app-id="wx8abaf00ee8c3202e" extra-data="{{ extraData }}" version="release">
+      <text>吐个槽</text>
+      <icon class="qb-icon qb-icon-nextx" />
+    </navigator>
+    <navigator class="item" url="/pages/ucenter/feedback/feedback">
+      <text>意见反馈</text>
+      <icon class="qb-icon qb-icon-nextx" />
+    </navigator>
+    <view class="item" bindtap="stayYuned">
+      <text>帮助</text>
+      <icon class="qb-icon qb-icon-nextx" />
+    </view>
+  </view>
+
+  <view class="bottom">v 1.0.20180911</view>
+
+</view>

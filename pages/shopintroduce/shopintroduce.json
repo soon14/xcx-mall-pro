@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText":"确认订单",
+  "usingComponents": {
+    "image-o": "/component/image-o/image-o"
+  }
+}

@@ -1,0 +1,112 @@
+<!-- 点按钮 -->
+<template name='hideBtn'>
+       <form  wx:for='{{hideBtnData.length}}' wx:key='' bindsubmit="hidepushFormSubmit"  report-submit='true'>
+           <view class="btn-area">
+             <button plain="true" formType="submit"  style='{{hideBtnData.length[index]}}'></button>
+          </view>
+       </form>
+</template>
+
+
+
+<template name='customizedBtn'>
+
+    <form bindsubmit="pushFormSubmit"  report-submit='true'>
+      <view class="btn-area">
+        <button plain="true" formType="submit"  style='{{btn_style.style}}'>{{btn_style.name}}</button>
+      </view>
+    </form>
+
+       <template is='hideBtn'></template>
+
+</template>
+
+<template name='miniSubscribeBtn'>
+  <template is='hideBtn'></template>
+
+  <form bindsubmit="pushFormSubmit"  report-submit='true'>
+    <view class="btn-area">
+      <button data-name='miniSubscribeBtn' data-id='{{miniSubscribeBtn.id}}' plain="true" formType="submit"  style='{{miniSubscribeBtn.style}}'>{{miniSubscribeBtn.name}}</button>
+    </view>
+  </form>
+</template>
+
+<template name='miniFollowBtn'>
+   <template is='hideBtn'></template> 
+
+   <form bindsubmit="pushFormSubmit"  report-submit='true'>
+      <view class="btn-area">
+        <button plain="true" formType="submit"  style='{{miniFollowBtn.style}}'>{{miniFollowBtn.name}}</button>
+      </view>
+    </form>
+</template>
+
+<template name='longSubscribeBtn'>
+   <template is='hideBtn'></template> 
+
+   <form bindsubmit="pushFormSubmit"  report-submit='true'>
+    <view class="btn-area">
+      <button plain="true" formType="submit"  style='{{longSubscribeBtn.style}}'>{{longSubscribeBtn.name}}</button>
+    </view>
+  </form>
+</template>
+
+<template name='longFollowBtn'>
+   <template is='hideBtn'></template> 
+
+    <form bindsubmit="pushFormSubmit"  report-submit='true'>
+      <view class="btn-area">
+        <button plain="true" formType="submit"  style='{{longFollowBtn.style}}'>{{longFollowBtn.name}}</button>
+      </view>
+    </form>
+</template>
+
+<template name="myorder">
+  <navigator url="../orderDetail/orderDetail?id={{item.id}}" class="item" wx:for="{{isTakeout==0&&isTakeout!=1?takeoutList:orderList}}" wx:key="{{item.id}}">
+          <view class="h">
+            <view class="img">
+              <image src="{{item.items[0].goodsPic}}"></image>
+            </view>
+            <view class="l" wx:if="{{item.shopName}}">
+              <text>{{item.sellerName}}</text>
+              <icon class="qb-icon qb-icon-nextx" />
+            </view>
+            <view class="time">{{item.createdTime}}</view>
+            <view class="r" wx:if="{{item.status==21}}">{{isTakeout==0 ? '订单已送达':'订单已完成'}}</view>
+            <view class="r" wx:elif="{{item.status==10}}">
+              <text>等待支付...</text>
+              <view class="remaintime">剩余05:30</view>
+            </view>
+            <view class="r" wx:elif="{{item.status==11}}">订单已取消</view>
+          </view>
+          <view class="subitem">
+            <view class="info">
+              <text class="name" wx:if="{{item.items.length>1}}">{{item.items[0].productName}}等{{item.items.length}}件商品</text>
+              <text class="name" wx:else>{{item.items[0].productName}}</text>
+              <!-- <text class="attr" wx:if="{{gitem.goodsSpecs || gitem.productAttrs}}">{{gitem.goodsSpecs}}{{gitem.goodsSpecs&&gitem.productAttrs?"|":""}}{{gitem.productAttrs}}</text> -->
+              <text class="number">￥{{item.formatTotalFee}}</text>
+            </view>
+            <view class="status"></view>
+          </view>
+          <view class="b">
+            <view class="r" wx:if="{{item.status==21}}">
+              <view class="takeout" wx:if="{{isTakeout==2}}">取餐码：<text class="takeoutcode">{{item.metadataObj.dineCode}}</text></view>
+              <button class="btn-repay" wx:if="{{isTakeout==0}}" data-order-index="{{index}}"  catchtap="payOrder">再来一单</button>
+            </view>
+             <view class="r" wx:if="{{item.status==10}}">
+              <button class="btn-pay" data-order-index="{{index}}"  catchtap="repayOrder">重新下单</button>
+              <button class="btn" data-order-index="{{index}}" catchtap="payOrder">去支付</button>
+            </view>
+             <view class="r" wx:if="{{item.status==11}}">
+              <button class="btn-repay" data-order-index="{{index}}"  catchtap="payOrder">重新下单</button>
+            </view>
+          </view>
+  </navigator>
+</template>
+
+
+
+
+
+
+

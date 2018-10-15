@@ -1,0 +1,112 @@
+page {
+    height: 100%;
+    background:#f4f4f4;
+    padding-top: 1rpx;
+    box-sizing:border-box;
+}
+/* 
+.scroller {
+    height: 100%;
+} */
+.no-address {
+    line-height: 56rpx;
+    padding: 0 30rpx;
+    margin: 16rpx 0;
+    font-size: 20rpx;
+    background:rgba(243,243,243,1);
+}
+.no-address .get-address {
+    position: absolute;
+    right: 30rpx;
+    top: 0;
+    line-height: 56rpx;
+    font-style: 24rpx;
+    color:rgba(102,102,102,1);
+}
+
+.no-address .get-address .qb-icon {
+    transform: translateY(-6rpx);
+    margin-right: 5rpx;
+}
+
+.weui-panel__hd::after {
+    border-bottom: none;
+}
+.weui-media-box {
+    width:750rpx;
+    height:176rpx;
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+}
+
+.weui-panel__bd .weui-media-box__hd {
+    width: 148rpx;
+    height: 112rpx;
+    opacity: 0.9;
+}
+
+ .weui-media-box::before {
+    border-top:1px solid #e5e5e5;
+    right: 30rpx;
+}
+
+.weui-panel__bd .weui-media-box__bd .weui-media-box__title {
+    height: 40rpx;
+    line-height:40rpx;
+    color:#333333;
+    font-size: 32rpx;
+}
+
+
+.weui-panel__bd .weui-media-box__bd .weui-media-box__desc{
+    line-height: 32rpx;
+    font-size: 24rpx;
+    color:#666666;
+    margin-top: 10rpx;
+}
+.weui-panel__bd .weui-media-box__bd .weui-media-box__activity{
+    width:96rpx;
+    height:32rpx;
+    background-color:#FF4A4A;
+    background-color:rgba(255,74,74,.1);
+    line-height: 32rpx;
+    margin-top:10rpx;
+}
+.weui-media-box__activity text{
+    display: inline-block;
+    width:100%;
+    height:24rpx;
+    color:#FF4A4A;
+    font-size: 20rpx;
+    text-align: center;
+}
+.weui-panel__bd .weui-media-box__bd .distance{
+    line-height: 32rpx;
+    font-size: 24rpx;
+    color:#999999;
+}
+.distance .qb-icon-nextx{
+    width:32rpx;
+    height: 32rpx;
+    font-size:40rpx;
+    margin-top:-40rpx;
+    margin-left:20rpx;
+}
+.weui-panel__bd .weui-media-box__bd .weui-media-box-call{
+    position: absolute;
+    line-height: 32rpx;
+    color:rgba(153,153,153,1);
+    font-size: 32rpx;
+    bottom: 30rpx;
+}
+
+.qb-icon-daohang {
+    vertical-align: baseline;
+    margin-right: 9rpx;
+}
+
+.line {
+    border-top: 1px solid #e5e5e5;
+    transform: scaleY(0.5);
+}

@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText":"菜单",
+	"usingComponents": {
+	  	"image-o": "/component/image-o/image-o",
+	  	"auth": "/component/auth/auth"
+	}
+}

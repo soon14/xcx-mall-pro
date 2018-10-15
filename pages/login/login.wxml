@@ -1,0 +1,9 @@
+
+<view class="toast-content">
+	<view class="toast-title">授权提示</view>
+	<view class="toast-info">小程序需要使用您的用户信息，是否允许</view>
+	<view class="toast-btn">
+		<button plain="true" hover-class="none" bindtap="clickCancel">取消</button>
+		<button plain="true" hover-class="none" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权</button>
+	</view> 
+</view>

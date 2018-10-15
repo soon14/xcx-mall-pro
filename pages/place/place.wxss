@@ -1,0 +1,145 @@
+@import '../../component/nodata/nodata.wxss'
+page {
+  background:rgba(248,248,248,1);
+  height: 100%;
+}
+.container{
+    background: #fff;
+    height: 100%;
+}
+.cate-nav{
+    position: fixed;
+    left:0;
+    top:0;
+    z-index: 1000;
+}
+
+.cate-nav-body{
+    white-space: nowrap;   
+    background: #fff;
+    overflow: hidden;
+    padding: 0 3rpx;
+    position: relative;
+}
+
+.cate-nav-body:before {
+    content: "";
+    border-bottom: 1px solid rgba(0,0,0,.15);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0;
+    transform: scaleY(0.5);
+}
+
+.cate-nav .item{
+    display: inline-block;
+    line-height: 98rpx;
+    height: 98rpx;
+    min-width: 130rpx;
+    padding: 0;
+}
+
+.cate-nav .item .name{
+    display: block;
+    height: 98rpx;
+    padding: 0 32rpx;
+    line-height: 98rpx;
+    color: #333;
+    font-size: 28rpx;
+    width: auto;
+    box-sizing: border-box;
+    color:rgba(102,102,102,1);
+}
+
+.cate-nav .item.active .name{
+    color: rgba(254,76,82,1);
+    border-bottom: 4rpx solid #FE4C52;
+}
+
+.cate-item{
+    height: auto;
+    overflow: hidden;
+}
+
+.cate-item .h{
+    height: 145rpx;
+    width: 750rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cate-item .h .name{
+    display: block;
+    height: 35rpx;
+    margin-bottom: 18rpx;
+    font-size: 30rpx;
+    color: #333;
+}
+
+.cate-item .h .desc{
+    display: block;
+    height: 24rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.cate-item .b{
+  width: 750rpx;
+  padding: 0 30rpx;
+  height: auto;
+  overflow: hidden;
+}
+
+.cate-item .b .item{
+  float: left;
+  width: 328rpx;
+  height: auto;
+  overflow: hidden;
+  text-align: center;
+}
+.cate-item .b .item:nth-child(2n) {
+  margin-left: 32rpx;
+}
+.cate-item .b .item-b{
+  margin-left: 6.25rpx;
+}
+
+.cate-item .item .img{
+  width: 328rpx;
+  height: 240rpx;
+  margin-bottom: 6rpx;
+}
+
+.cate-item .item .name{
+  display: block;
+  height: 36rpx;
+  line-height: 36rpx;
+  margin-bottom: 10rpx;
+  text-align: center;
+  overflow: hidden;
+  font-size:28rpx;
+  color:rgba(67,67,67,1);
+  color: #333;
+}
+
+.cate-item .item .price{
+  display: block;
+  height: 36rpx;
+  line-height: 36rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #b4282d;
+  margin-bottom: 20rpx;
+}
+
+.goods-list-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100rpx;
+  bottom: 0;
+}

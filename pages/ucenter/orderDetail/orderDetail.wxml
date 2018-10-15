@@ -1,0 +1,93 @@
+<view class="container">
+  <!-- <homepage/> -->
+  <view class="order-view">
+    <view class="order-top">
+      <image src="{{orderInfo.items[0].goodsPic}}"></image>
+      <text>{{orderInfo.sellerName}}</text>
+      <icon class="qb-icon qb-icon-nextx" />
+    </view>
+    <view class="order-takeout">
+      <text class="attention">请关注您的取餐码</text>
+      <text class="code">{{orderInfo.metadataObj.dineCode}}</text>
+    </view>
+  </view>
+  <view class="order-goods">
+    <view class="h">
+      <view class="label">商品信息</view>
+    </view>
+    <view class="goods">
+      <view class="{{isfold ? 'goods-item':'goods-itemView'}}">
+        <view class="item" wx:for="{{orderInfo.items}}" wx:key="{{item.id}}">
+              <view class="name">
+                <text>{{item.productName}}</text>
+                <text wx:if="{{item.goodsSpecs||item.productAttrs}}" class="attr">{{item.goodsSpecs}}|{{item.productAttrs}}</text>
+              </view>
+              <view class="number">x{{item.quantity}}</view>
+              <view class="price">￥{{item.unitPrice / 100}}</view>
+          <!-- <text class="attr" wx:if="{{item.goodsSpecs || item.productAttrs}}">{{item.goodsSpecs}}{{item.goodsSpecs&&item.productAttrs?"|":""}}{{item.productAttrs}}</text> -->
+        </view>
+      </view>
+      <view class="moreInfo" wx:if="{{orderInfo.items.length>3}}" bindtap="moreInfo">
+        <view wx:if="{{isfold}}">
+          <text>查看更多</text>
+          <icon class="qb-icon qb-icon-nextx" />
+        </view>
+        <view wx:else class="up">
+          <icon class="qb-icon qb-icon-nextx" />
+        </view>
+      </view>
+      <view class="order-discount" wx:if="{{orderInfo.totalFee - orderInfo.realPaid > 0}}">
+        <text class="order-ticket">优惠</text>
+        <text class="discount">- {{(orderInfo.totalFee - orderInfo.realPaid)/100}}</text>
+      </view>
+      <view class="order-total">
+        <text class="subtotal">小计：</text>
+        <text class="total">￥{{orderInfo.realPaid/100}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="order-info">
+    <view class="h">
+      <view class="label">订单信息</view>
+    </view>
+    <view class="item-b">
+      <text class="item-sub">订单时间</text>
+      <text class="item-info">{{orderInfo.createdTime}}</text>
+    </view>
+    <view class="item-b" wx:if="{{orderInfo.metadataObj.actorsNum}}">
+      <text class="item-sub">用餐人数</text>
+      <text class="item-info">{{orderInfo.metadataObj.actorsNum}}</text>
+    </view>
+    <view class="item-b" wx:if="{{orderInfo.metadataObj.note}}">
+      <text class="item-sub">备注</text>
+      <text class="item-info">{{orderInfo.metadataObj.note}}</text>
+    </view>
+    <view class="item-b" wx:if="{{orderInfo.metadataObj.dineCode}}">
+      <text class="item-sub">取餐码</text>
+      <text class="item-info">{{orderInfo.metadataObj.dineCode}}</text>
+    </view>
+  </view> 
+  <!-- <view class="order-bottom">
+        <view class="address">
+            <view class="t">
+                <text class="name">{{orderInfo.consignee}}</text>
+                <text class="mobile">{{orderInfo.mobile}}</text>
+            </view>
+            <view class="b">{{orderInfo.full_region + orderInfo.address}}</view>
+        </view>
+        <view class="total">
+            <view class="t">
+                <text class="label">商品合计：</text>
+                <text class="txt">￥{{orderInfo.goods_price}}</text>
+            </view>
+            <view class="t">
+                <text class="label">运费：</text>
+                <text class="txt">￥{{orderInfo.freight_price}}</text>
+            </view>
+        </view>
+        <view class="pay-fee">
+            <text class="label">实付：</text>
+            <text class="txt">￥{{orderInfo.actual_price}}</text>
+        </view>
+    </view> -->
+</view>

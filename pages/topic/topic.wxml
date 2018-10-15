@@ -1,0 +1,22 @@
+<view class="container" wx:if="{{!noData}}">
+    <view class="topic-list" scroll-y="true" scroll-top="{{scrollTop}}" bindscrolltolower="addPage">
+        <navigator class="item" wx:for="{{topicList}}" wx:key="{{item.id}}" url="../topicDetail/topicDetail?id={{item.id}}">
+            <view class="info">
+                <text class="title">{{item.title}}</text>
+            </view>
+           <image class="img" src="{{item.preview}}"></image>
+            <view class="pubtime">{{item.formatCreatedTime}} 发布</view>
+        </navigator>
+        <view class="weui-loadmore" wx:if="{{isLoading}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view class="weui-loadmore weui-loadmore_line" wx:if="{{noMoreData && topicList.length > 2}}">
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我是有底线的</view>
+        </view>
+    </view>
+</view>
+<block wx:if="{{noData}}">
+    <import src="../../component/nodata/nodata.wxml" /> 
+    <template is="nodata"></template>
+</block>

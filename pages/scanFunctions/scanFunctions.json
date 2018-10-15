@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "扫码功能",
+	"enablePullDownRefresh": false,
+	"usingComponents": {
+		"homepage": "/component/homepage/homepage"
+	}
+}

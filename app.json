@@ -1,0 +1,108 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/ucenter/myinfo/index",
+    "pages/ucenter/index/index",
+    "pages/message/message",
+    "pages/ucenter/address/address",
+    "pages/ucenter/addressAdd/addressAdd",
+    "pages/ucenter/footprint/footprint",
+    "pages/ucenter/order/order",
+    "pages/ucenter/orderDetail/orderDetail",
+    "pages/ucenter/activity/activity",
+    "pages/ucenter/activityDetail/activityDetail",
+    "pages/ucenter/activitySetting/activitySetting",
+    "pages/ucenter/express/express",
+    "pages/ucenter/feedback/feedback",
+    "pages/ucenter/coupon/coupon",
+    "pages/ucenter/collect/collect",
+    "pages/ucenter/myaddress/myaddress",
+    "pages/payResult/payResult",
+    "pages/topic/topic",
+    "pages/comment/comment",
+    "pages/commentPost/commentPost",
+    "pages/topicComment/topicComment",
+    "pages/shop/shop",
+    "pages/shopDetail/shopDetail",
+    "pages/place/place",
+    "pages/shopintroduce/shopintroduce",
+    "pages/placeDetail/placeDetail",
+    "pages/shopping/checkout/checkout",
+    "pages/shopping/offerPay/offerPay",
+    "pages/shopping/address/address",
+    "pages/shopping/addressAdd/addressAdd",
+    "pages/goods/goods",
+    "pages/topicDetail/topicDetail",
+    "pages/ucenter/card/card",
+    "pages/login/login",
+    "pages/preSubmit/preSubmit",
+    "pages/userList/userList",
+    "pages/formEdit/formEdit",
+    "pages/scanFunctions/scanFunctions",
+    "pages/payInput/payInput",
+    "pages/orderMenu/orderMenu",
+    "pages/catalog/catalog",
+    "pages/wifi/wifiSetting",
+    "pages/orderDetails/orderDetails",
+    "pages/takeaway/shopList_ta/shopList_ta",
+    "pages/takeaway/giftList_ta/giftList_ta",
+    "pages/takeaway/shopOrder_ta/shopOrder_ta",
+    "pages/takeaway/giftShop/giftShop",
+    "pages/ucenter/newaddress/newaddress",
+    "pages/ucenter/newAddAddress/newAddAddress",
+    "pages/ucenter/submitOrder/submitOrder",
+    "pages/ucenter/userCouponsList/userCouponsList",
+    "pages/ucenter/selectCoupons/selectCoupons"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "加载中...",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f4f4f4",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "selectedColor": "#434343",
+    "color": "#999",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/ic_menu_choice_nor.png",
+        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/topic/topic",
+        "iconPath": "static/images/ic_menu_topic_nor.png",
+        "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
+        "text": "专题"
+      },
+      {
+        "pagePath": "pages/orderMenu/orderMenu",
+        "iconPath": "static/images/ic_menu_sort_nor.png",
+        "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
+        "text": "点餐"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "iconPath": "static/images/message.png",
+        "selectedIconPath": "static/images/message_checked.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/ucenter/myinfo/index",
+        "iconPath": "static/images/ic_menu_me_nor.png",
+        "selectedIconPath": "static/images/ic_menu_me_pressed.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false
+}

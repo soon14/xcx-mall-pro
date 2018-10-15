@@ -1,0 +1,181 @@
+/* pages/ucenter/addAddress/addAddress.wxss */
+
+page {
+  height: 100%;
+}
+
+.add-address .add-form {
+  background: #fff;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.add-address .form-item {
+  height: 100rpx;
+  width: auto;
+  border-bottom: 1rpx solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 31.25rpx;
+}
+
+.form-item .add-name {
+  height: 100rpx;
+  display: flex;
+  font-size: 28rpx;
+  align-items: center;
+  color: #333333;
+  font-weight:700;
+}
+
+.add-address .input {
+  position: absolute;
+  display: flex;
+  right: 31.25rpx;
+  width:520rpx;
+  height: 100rpx;
+  line-height: 44rpx;
+  font-size: 28rpx;
+  left: 150rpx;
+  align-items: center;  
+}
+
+.add-address .radio-group {
+  flex: 1;
+  height: 100rpx;
+  position: absolute;
+  left: 100rpx;
+  overflow: hidden;
+}
+
+.add-address .radio-group .radio {
+  flex: 1;
+  transform: scale(0.7);
+  overflow: hidden;
+}
+
+.text-boygirl {
+  font-size: 25rpx;
+  padding-left: 50rpx;
+  height: 25rpx;
+  line-height: 25rpx;
+}
+
+.add-address .form-default {
+  border-bottom: 1px solid #d9d9d9;
+  height: 96rpx;
+  background: #fafafa;
+  padding-top: 30rpx;
+  font-size: 25rpx;
+}
+
+.default-input {
+  margin: 0 auto;
+  display: block;
+  width: 240rpx;
+  height: 40rpx;
+  padding-left: 50rpx;
+  line-height: 40rpx;
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/checkbox-sed825af9d3-a6b8540d42.png) 1rpx -448rpx no-repeat;
+  background-size: 38rpx 486rpx;
+  font-size: 25rpx;
+}
+
+.default-input.selected {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/checkbox-sed825af9d3-a6b8540d42.png) 0 -192rpx no-repeat;
+  background-size: 38rpx 486rpx;
+}
+
+.add-address .btns {
+  margin-top: 64rpx;
+  overflow: hidden;
+  display: flex;
+  height: 80rpx;
+  width: 100%;
+}
+.add-address .btn-del {
+  margin-top: 32rpx;
+  
+}
+.add-address .btns:nth-child(1){
+  margin-top:64rpx;
+ }
+.add-address .save {
+  flex: 1;
+  height: 80rpx;
+  text-align: center;
+  margin-left: 31.25rpx;
+  margin-right: 31.25rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  color: #fff;
+  border: none;
+  border-radius: 15rpx;
+  background: #434343;
+}
+
+.add-address .changebutton {
+  flex: 1;
+  height: 80rpx;
+  text-align: center;
+  margin-left: 31.25rpx;
+  margin-right: 31.25rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  color: #000;
+  border-style: solid;
+  border-radius: 15rpx;
+  border-width: 2rpx;
+  border-color: #434343;
+  background: white;
+}
+
+.form-item .address-container {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  right: 25rpx;
+  top:35rpx;
+}
+
+.icon-address {
+  display: block;
+  height: 30rpx;
+  width: 30rpx;
+  margin-right: 32rpx;
+  background: url(https://oss.qianbaocard.org/20180820/ece4d732b28d47c1bd6444a5fd0775ea.png) 0 0 no-repeat;
+  background-size: 30rpx;
+}
+.icon-edit {
+  display: block;
+  height: 30rpx;
+  width: 30rpx;
+  margin-right: 32rpx;
+  background: url(https://oss.qianbaocard.org/20180919/3faa7dffe9a046aa9e07ab3f84d4e7f7.png) 0 0 no-repeat;
+  background-size: 30rpx;
+}
+.text-choose {
+ height: 116rpx;
+  font-size: 25rpx;
+  text-align: left;
+  line-height: 25rpx;
+  flex: 1;
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  left: 40rpx;
+  right: 25rpx;
+  align-items: center
+}
+
+ /* .i {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  right: 0rpx;
+  top:43rpx;
+} */

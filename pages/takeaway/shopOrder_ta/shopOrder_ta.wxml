@@ -1,0 +1,64 @@
+<import src="/pages/menu/menu.wxml" />
+<view class="container">
+  <view class='stayouting' wx:if="{{shop.takeoutConfig.isBizTime==false}}"> 外卖歇业中，暂不接单</view>
+  <view class="service-policy">
+    <navigator class='service-policy_merchant' url="{{takeoutShopCount >= 1 ? '/pages/takeaway/shopList_ta/shopList_ta' : ''}}" hover-class="none">
+      <view class='service-policy_merchantall'>
+        <image class='service-policy_merchantImg' mode="aspectFill" src="{{shop.media[0].url}}"></image>
+        <view class='service-policy_merchantInfo'>
+          <view class='service-policy_merchantName'>{{showName}}</view>
+          <view class='service-policy_merchantDistribution'> 最大配送距离 {{maxDistance}}km</view>
+
+          <view class='service-policy_merchantDistribution'>起送¥ {{startFee}}</view>
+          <!-- <view class='service-policy_merchantDistribution'>营业时间：{{shop.bizTimes[0].startTime}}-{{shop.bizTimes[0].endTime}}</view> -->
+        </view>
+      </view>
+      <image class="arrow" wx:if="{{takeoutShopCount > 1}}" src='/static/images/menu_shop_more.png' />
+    </navigator>
+    <!-- <view class='service-policy.choose'>
+      <text class='choose_title' style="border-bottom: {{goodsBorder}};" data-id="0" bindtap='changeType'>商品</text>
+      <text class='choose_title' style="border-bottom: {{merchantBorder}};" data-id="1" bindtap='changeType'>商家</text>
+    </view> -->
+  </view>
+
+  <view class="catalog" wx:if="{{!isShowMerchantInfo}}">
+    <template is="category" data="{{currentCategory,navList}}"></template>
+    <template is="product" data="{{cataType,goodsList,mainColor,isLoading,noMoreData,canEdit: shop.takeoutConfig.isBizTime!==false,categoryName:navname}}"></template>
+  </view>
+  <view class="model" wx:if="{{isShow}}">
+    <view class="list" animation="{{modelAnimation}}">
+
+      <template is="menu" data="{{title:'外卖已选菜品',menuList:checkedList,mainColor}}"/>
+
+    </view>
+    <view class="bg" animation="{{modelbgAnimation}}" bindtap="hide" bindtouchstart="showList"></view>
+  </view>
+
+  <template is="cashier" data="{{number:totleLength,money:totle,btnColor:submitcolor,btnTitle:submitname}}" wx:if="{{!isShowMerchantInfo}}"/>
+  
+  <view class='merchantInfo' wx:if="{{isShowMerchantInfo}}">
+    <view class='merchantInfo_item'>
+      <text class='merchantInfo_t'>商家电话：{{shop.phone}}</text>
+      <image class='merchantInfo_icon' bindtap="callPhone" src="../../../static/images/phone.png"></image>
+    </view>
+    <view class='merchantInfo_item'>
+      <text class='merchantInfo_t'>商家地址：{{shop.location.address}}</text>
+    </view>
+    <!-- <view class='merchantInfo_item'>
+      <text class='merchantInfo_t'>营业时间：{{shop.bizTimes[0].startTime}}-{{shop.bizTimes[0].endTime}}</text> 
+    </view>-->
+    <view class='merchantInfo_item'>
+      <text class='merchantInfo_t'>配送服务：由{{deliveryType}}提供配送服务</text>
+    </view>
+  </view>
+
+  <view class="preview-model" catchtouchmove="stop" animation="{{previewAnimationData}}" wx:if="{{showAddParam}}">
+    <view class="preview-model-content" animation="{{animationData}}">
+      <template is="paramChoice" data="{{product:productTmp,norms:normsTmp,attrs:attrsTmp,mainColor,price:priceTmp}}"/>
+      
+    </view>
+    <view class="bg" bindtap="hideToast"></view>
+  </view>
+
+</view>
+

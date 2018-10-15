@@ -1,0 +1,541 @@
+/* pages/ucenter/submitOrder/submitOrder.wxss */
+
+page {
+  background: #f2f2f2;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+  background-color: white;
+  width: auto;
+  margin-top: 20rpx;
+}
+
+.headerContainer .addressContainer {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  height: 100rpx;
+}
+
+.headerContainer .line {
+  background-color: #eee;
+  height: 2rpx;
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.addressContainer .addressInfo {
+  flex: 1;
+  height: 100rpx;
+  position: absolute;
+  left: 100rpx;
+  right: 100rpx;
+  top: 57rpx;
+  overflow: hidden;
+}
+
+.addressInfo .selectedAddress {
+  height: 37rpx;
+  font-size: 32rpx;
+  line-height: 37rpx;
+  overflow: hidden;
+  font-weight: 700;
+  color: #434343;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 6.25rpx;
+}
+
+.addressInfo .selectedname {
+  height: 29rpx;
+  font-size: 24rpx;
+  line-height: 29rpx;
+  overflow: hidden;
+  color: #666;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.addressContainer .addAddress {
+  display: flex;
+  flex: 1;
+  height: auto;
+  position: absolute;
+  left: 100rpx;
+  right: 100rpx;
+  /* top: 57rpx; */
+  overflow: hidden;
+}
+
+.addressContainer .addAddressText {
+  font-size: 32rpx;
+  /* padding: 10rpx; */
+  color: #434343;
+  font-weight: 700;
+}
+
+.headerContainer .addressIcon {
+  display: block;
+  height: 40rpx;
+  width: 40rpx;
+  background: url(https://oss.qianbaocard.org/20180820/ece4d732b28d47c1bd6444a5fd0775ea.png) 0 0 no-repeat;
+  background-size: 40rpx;
+}
+
+.addressContainer .arrow {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 70rpx;
+}
+
+.timeContainer {
+  background-color: white;
+  display: flex;
+  height: 60rpx;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.timeContainer .timeIcon {
+  display: block;
+  height: 35rpx;
+  width: 35rpx;
+  background: url(https://oss.qianbaocard.org/20180621/5540281ef5314b899da370fdad46a800.png) 0 0 no-repeat;
+  background-size: 35rpx;
+  margin-left: 5rpx;
+}
+
+.timeContainer .TimeInfo {
+  flex-direction: row;
+  display: flex;
+  flex: 1;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}
+
+.timeContainer .sArrow {
+  background-color: purple;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.leftTitle{
+  color: #434343;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.itemHeader {
+  background-color: white;
+  display: flex;
+  height: 80rpx;
+  align-items: center;
+  padding-left: 20rpx;
+  margin-top: 20rpx;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.itemList .item {
+  height: 90rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* background-color: #f9f9f9; */
+  float: left;
+  padding-left: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.item .l .itemImage {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+}
+
+.item .r {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+  flex: 1;
+  margin-right: 20rpx;
+}
+
+.r .itemName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.itemName .name {
+  flex: 1;
+  color: #434343;
+  font-size: 28rpx;
+}
+
+.itemName .number {
+  padding-right: 30rpx;
+  color: #999999;
+  font-size: 28rpx;
+}
+
+.itemName .itemPrice {
+  color: #434343;
+  font-size: 28rpx;
+}
+
+.r .itemParam{
+  color: #999999;
+  font-size: 24rpx;
+}
+
+.deliver {
+  background-color: white;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  padding-left: 20rpx;
+  align-items: center;
+}
+
+.showmoreall{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.showmore {
+  color: #999999;
+  font-size: 25rpx;
+}
+
+.showmore_icon {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.singlearea {
+  display: flex;
+  width: 100%;
+  height: 2rpx;
+  background-color: white;
+  flex-direction: column;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.singleline {
+  background-color: #eee;
+  height: 2rpx;
+}
+
+.deliver .deliver-r {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.deliver .deliver-name {
+  flex: 1;
+}
+
+.ul {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 100rpx;
+  right: 0;
+}
+
+.payBtn {
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.payBtn .totle {
+  flex: 1;
+  line-height: 100rpx;
+  height: 100rpx;
+  padding-left: 30rpx;
+}
+
+.totleText {
+  font-size: 40rpx;
+  color: #000;
+  vertical-align: middle;
+}
+
+.discountText {
+  margin-left: 15rpx;
+  font-size: 25rpx;
+  color: #999;
+  vertical-align: middle;
+}
+
+.payBtn .submit {
+  border: none;
+  border-radius: 0;
+  width: 210rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+  height: 100rpx;
+}
+
+.modalContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modalContainer .modal {
+  width: 100%;
+  height: 800rpx;
+  background-color: white;
+  position: fixed;
+  z-index: 9;
+  bottom: 0;
+  max-height: 800rpx;
+}
+
+.modal .itemsc {
+  height: 600rpx;
+  overflow: auto;
+}
+
+.modal .header {
+  height: 100rpx;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-bottom: 1rpx solid #dcd9d9;
+}
+
+.modal .cancle {
+  position: absolute;
+  left: 20rpx;
+  top: 30rpx;
+}
+
+.modal .title {
+  font-size: 32rpx;
+  color: #434343;
+}
+
+.modal .footer {
+  background-color: white;
+  height: 100rpx;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-top: 1rpx solid #dcd9d9;
+}
+
+.modal .footer .addIcon {
+  display: block;
+  height: 40rpx;
+  width: 40rpx;
+  background: url(https://oss.qianbaocard.org/20180621/6bf80467e79244a4a66abf038d5ed1f8.png) 0 0 no-repeat;
+  background-size: 40rpx;
+  margin-right: 20rpx;
+}
+
+.footer .addText {
+  color: #434343;
+  font-size: 32rpx;
+}
+
+.bg {
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+}
+
+.container.noscroll {
+  position: flex;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.beizhu {
+  background-color: white;
+  width: auto;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.paddingbottom {
+  padding-bottom: 120rpx;
+}
+
+.weui-cell__bd, .weui-cell__ft {
+  line-height: 50rpx;
+  height: 50rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  color: #434343;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.weui-cell__ft {
+  color: #666;
+  width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.empty-view {
+  height: 600rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-view .icon {
+  height: 248rpx;
+  width: 258rpx;
+  margin-bottom: 10rpx;
+}
+
+.empty-view .text {
+  width: auto;
+  font-size: 28rpx;
+  line-height: 35rpx;
+  color: #999;
+}
+
+.modal .list {
+  padding-left: 31.25rpx;
+  padding-right: 31.25rpx;
+  background: #fff url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/address-bg-bd30f2bfeb.png) 0 0 repeat-x;
+  background-size: auto 10.5rpx;
+  margin-bottom: 90rpx;
+}
+
+.list .item {
+  height: 156.55rpx;
+  align-items: center;
+  display: flex;
+  border-bottom: 1rpx solid #dcd9d9;
+}
+
+.list .l {
+  width: 60rpx;
+  height: 156.55rpx;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.list .c {
+  flex: 1;
+  height: 156.55rpx;
+  position: absolute;
+  margin-top: 45rpx;
+  left: 100rpx;
+  right: 125rpx;
+  align-items: center;
+  overflow: hidden;
+}
+
+.list .addresslocation {
+  height: 37rpx;
+  font-size: 25rpx;
+  line-height: 37rpx;
+  overflow: hidden;
+  color: #666;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 6.25rpx;
+}
+
+.list .namephone {
+  height: 29rpx;
+  font-size: 29rpx;
+  line-height: 29rpx;
+  overflow: hidden;
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list .r {
+  width: 52rpx;
+  height: 156.55rpx;
+  overflow: hidden;
+  position: absolute;
+  right: 0rpx;
+  margin-top: 58rpx;
+}
+
+.list .editIcon {
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
+  background: url(https://oss.qianbaocard.org/20180621/65e1e34306444a28926a4a221336949f.png) 0 0 no-repeat;
+  background-size: 40rpx;
+}
+
+.bt_cancel {
+  position: fixed;
+  bottom: 0;
+  margin-left: 2-rpx;
+  margin-right: 20rpx;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  border:red solid 1rpx;
+  color:white;
+  background:red;
+  border-radius: 0;
+}
+
+.couponList {
+  padding-bottom: 80rpx;
+}

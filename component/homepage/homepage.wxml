@@ -1,0 +1,2 @@
+<!--component/homepage/homepage.wxml-->
+<image-o src="https://oss.qianbaocard.org/20180905/ce6916b4ac804c37b232467b56e44a65.png" bindtap='goHome' o-class="add_icon" resize="w:150" wx:if="{{show}}"/>

@@ -1,0 +1,105 @@
+<view class="container" wx:if='{{!isShowCoupon}}'>
+  <view class="service-policy">
+    <view class="item">
+      <image src="../../static/images/addres.png"/>
+      <text>{{shop.name + (shop.branchName ? "(" + shop.branchName + ")" : "")}}</text>
+    </view>
+    <!-- <view class="item">当前桌台：{{activity.place.name}}</view>
+    <view class="item" bindtap="goUsers" wx:if="{{isShare}}">点餐人数：{{activity.actors.length}}</view> -->
+    <!-- <view class="item">服务员:{{activity.medadata.owner_name || "待分配"}}</view> -->
+  </view>
+  <view class="ul">
+    <view class="radio" wx:if="{{dineEnable}}">
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="r">
+          外带  <radio value="外带" checked="{{isDineOut}}"/>
+        </label>
+        <label class="r">
+          堂食 <radio value="堂食" checked="{{!isDineOut}}"/>
+        </label>
+      </radio-group>
+    </view>
+    <view class="form" wx:if="{{needActor}}">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">选择用餐人数
+          </view>
+        </view>
+        <view class="form-count weui-cell__bd">
+          <picker disabled="{{isDisabled}}" bindchange="bindCountryChange" range="{{actorsData}}">
+            <view class="weui-select weui-select_in-select-after">{{actorsNum ? actorsNum + '人' : ''}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+ 
+    <view class="order-goods">
+      <!-- <view class="h">
+        <view class="label">{{shop.name + (shop.branchName ? "(" + shop.branchName + ")" : "")}}</view>
+      </view> -->
+      <view class="goods">
+        <view class="{{isfold ? 'goods-item':'goods-itemView'}}">
+          <view class="item" wx:for="{{dineList}}" wx:key="$this">
+              <image-o o-class="img" mode="aspectFill" src="{{item.product.media[0].url}}" resize="w:80"/>
+            <view class="name">
+              <text>{{item.name}}</text>
+              <view>{{item.goodsSpecs}}</view>
+              <text wx:if="{{item.metadata.hasParam}}" class="attr">{{item.metadata.norm}}{{item.metadata.norm&&item.metadata.attr?"|":""}}{{item.metadata.attr}}</text>
+            </view>
+            <text class="number">x{{item.metadata.number}}</text>
+            <view class="price">￥{{(item.metadata.price / 100) * item.metadata.number}}</view>
+            <!-- <text class="attr" wx:if="{{item.goodsSpecs || item.productAttrs}}">{{item.goodsSpecs}}{{item.goodsSpecs&&item.productAttrs?"|":""}}{{item.productAttrs}}</text> -->
+          </view>
+        </view>
+        <view class="moreInfo" wx:if="{{dineList.length>3}}" bindtap="moreInfo">
+          <view wx:if="{{isfold}}">
+            <text>查看更多</text>
+            <icon class="qb-icon qb-icon-nextx" />
+          </view>
+          <view wx:else class="up">
+            <icon class="qb-icon qb-icon-nextx" />
+          </view>
+        </view>
+        <view class="order-discount" wx:if="{{netCoupons && netCoupons.length > 0}}">
+          <text class="order-ticket">优惠券</text>
+          <view class="discount"  catchtap='chooseCoupon'>
+            <text>{{couponDiscount == 0 ? "您有优惠券可用" : "-￥" + couponDiscount/100}}</text>
+            <icon class="qb-icon qb-icon-nextx" />
+          </view>
+        </view>
+        <view class="order-total">
+          <text class="subtotal">实付：</text>
+          <text class="total">￥{{(totle - couponDiscount < 0 ? 0 : (totle - couponDiscount)) / 100}}</text>
+        </view>
+      </view>
+  </view>
+   <view class="form1">
+    <navigator url="/pages/formEdit/formEdit?key=note&type=textarea&max=200&label=备注&value={{note}}&placeholder=请输入备注&disabled={{isDisabled?1:0}}" class="weui-cell" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">备注</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access {{isDisabled?'disabled':''}}">{{note}}</view>
+    </navigator>
+  </view>
+  <!-- </scroll-view> -->
+</view>
+ 
+  
+  <view class="button-wrap">
+    <view class="totle">
+      总计：
+      <text>￥{{(totle - couponDiscount < 0 ? 0 : (totle - couponDiscount)) / 100}}</text>
+    </view>
+    <button plain="true" class="goback" bindtap="goback" style="background-color: {{mainColor}}" wx:if="{{activity.status == 'CLOSED'}}">返回首页</button>
+    <button plain="true" bindtap="submit" style="background: {{mainColor}};" class="submit" wx:if="{{!beforePublish && activity.status == 'CREATED'}}">去支付</button>
+    <button plain="true" bindtap="reSubmit" class="reSubmit" wx:if="{{beforePublish}}">付款中...</button>
+    <button plain="true" bindtap="reSubmit" class="reSubmit" wx:if="{{!beforePublish && activity.status == 'PUBLISHED'}}">付款中...</button>
+    <button plain="true" disabled="disabled" wx:if="{{!beforePublish && activity.status == 'CLOSED'}}">已付款</button>
+  </view>
+</view>
+
+<view class='couponList' wx:if='{{isShowCoupon}}'>
+     <coupons coupons='{{localCoupons}}' itemHeight='196' showUse='{{true}}' showMiddle='{{false}}' tipsPaddingLeft= '80' bind:singleSelected="onCouponSelectClick" middleColor='rgba(249,249,249,1)'>
+  </coupons>
+       <button class='bt_cancel' catchtap='coupons_cancel'>取消</button>
+</view>
+
+

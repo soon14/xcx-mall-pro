@@ -1,0 +1,188 @@
+<view class="container">
+  <homepage/>
+  <!-- <view class="bg">
+    <view class="top">
+      <view class="status">{{orderInfo.progressStatusName}}</view>
+      <view class="again" bindtap="goCatelog">再来一单</view>
+
+      <button class="share" size="mini" plain="true" open-type="share">分享</button>
+    </view>
+    <view class="line" wx:if="{{orderInfo.status==21&&orderInfo.fulfillment.metadata.delivery.status>2}}"></view>
+    <view class="express" wx:if="{{orderInfo.status==21&&orderInfo.fulfillment.metadata.delivery.status>2}}">
+      <image class="ex_icon" src="../../static/images/ic_menu_me_nor.png"></image>
+      <view class="ex_name">{{orderInfo.fulfillment.metadata.delivery.delivererName}}</view>
+      <view class="ex_type">{{orderInfo.fulfillment.typeName}}</view>
+      <view class="null"></view>
+      <image class="ex_phone" src="../../static/images/phone.png" bindtap="makePhone"></image>
+    </view>
+    
+  </view> -->
+  <view class="order-view">
+    <view class="order-top">
+      <image src="{{orderInfo.items[0].goodsPic}}"></image>
+      <text>{{orderInfo.sellerName}}</text>
+      <icon class="qb-icon qb-icon-nextx" />
+    </view>
+    <view class="order-takeout">
+      <text class="attention">{{orderInfo.progressStatusName}}</text>
+      <!-- <text class="sub">外卖小哥正在为你配送</text> -->
+      <view class="r">
+       <button class="btn-repay" data-order-index="{{index}}" catchtap="goCatelog">再来一单</button>
+       <button class="btn-share" data-order-index="{{index}}" open-type="share">分享好友</button>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="bg">
+    <view class="merchant" bindtap="goIndex">
+
+      <view class="merchant_name">{{orderInfo.shopName}}</view>
+      <view class="null"></view>
+      <image class="img" src="../../static/images/address_right.png"></image>
+    </view>
+    <view class="line"></view>
+    <view class="order_list" wx:for="{{orderInfo.items}}" wx:key="{{item.id}}" wx:if="{{item.type!=5}}">
+      <image class="merchant_icon" src="{{item.goodsPic}}"></image>
+      <view class='info'>
+      <view class="dish_name">{{item.productName}}</view>
+      <view wx:if="{{item.goodsSpecs || item.productAttrs}}">{{item.goodsSpecs}}{{item.goodsSpecs&&item.productAttrs?"|":""}}{{item.productAttrs}}</view>
+      <view class="dish_cash">x{{item.quantity}}   ￥{{item.unitPrice / 100}}</view></view>
+    </view>
+    <view class="ex_view" wx:for="{{orderInfo.items}}" wx:key="{{item.id}}" wx:if="{{item.type==5}}">
+      <view class="ex_text">配送费</view>
+      <view class="null"></view>
+      <view class="ex_cash">￥{{item.unitPrice/100}}</view>
+    </view>
+    <view class="line"></view>
+    <view class="view_total">
+      <view class="view_text">实付</view>
+      <view class="view_cash">￥{{orderInfo.formatTotalFee}}</view>
+    </view>
+    <view class="line"></view>
+    <view class='view_merhcant_phone' bindtap="makePhoneMerhcant">
+      <image class="ex_phone" src="../../static/images/phone.png"></image>
+      <view class="merchant_phone">联系商家</view>
+    </view>
+  </view> -->
+  <view class="order-goods">
+    <view class="h">
+      <view class="label">商品信息</view>
+    </view>
+    <view class="goods">
+      <view class="{{isfold ? 'goods-item':'goods-itemView'}}">
+        <view class="item" wx:for="{{orderInfo.items}}" wx:key="{{item.id}}">
+              <view class="name">
+                <text>{{item.productName}}</text>
+                <text wx:if="{{item.goodsSpecs||item.productAttrs}}" class="attr">{{item.goodsSpecs}}|{{item.productAttrs}}</text>
+              </view>
+              <text class="number">x{{item.quantity}}</text>
+              <view class="price">￥{{item.unitPrice / 100}}</view>
+          <!-- <text class="attr" wx:if="{{item.goodsSpecs || item.productAttrs}}">{{item.goodsSpecs}}{{item.goodsSpecs&&item.productAttrs?"|":""}}{{item.productAttrs}}</text> -->
+        </view>
+      </view>
+      <view class="moreInfo" wx:if="{{orderInfo.items.length>3}}" bindtap="moreInfo">
+        <view wx:if="{{isfold}}">
+          <text>查看更多</text>
+          <icon class="qb-icon qb-icon-nextx" />
+        </view>
+        <view wx:else class="up">
+          <icon class="qb-icon qb-icon-nextx" />
+        </view>
+      </view>
+      <view class="order-discount" wx:if="{{orderInfo.totalFee - orderInfo.realPaid > 0}}">
+        <text class="order-ticket">优惠</text>
+        <text class="discount">- {{(orderInfo.totalFee - orderInfo.realPaid)/100}}</text>
+      </view>
+      <view class="order-total">
+        <text class="subtotal">小计：</text>
+        <text class="total">￥{{orderInfo.realPaid/100}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="bg">
+    <view class="ex_info_view" wx:if="{{orderInfo.status==21&&orderInfo.fulfillment.metadata.delivery.status==4}}">
+      <view class="ex_left">送达时间：</view>
+      <view class="ex_right">{{orderInfo.fulfillment.metadata.delivery.finishTime}}</view>
+    </view>
+    <view class="ex_info_view">
+      <view class="ex_left">配送地址：</view>
+      <view class="ex_addr_view">
+        <view class="ex_right">{{orderInfo.address.receiverName}}</view>
+        <view class="ex_right">{{orderInfo.address.phone}}</view>
+        <text class="ex_right_spe">{{orderInfo.address.address}}</text>
+      </view>
+    </view>
+    <view class="ex_info_view">
+      <view class="ex_left">配送方：</view>
+      <view class="ex_right">{{orderInfo.fulfillment.typeName}}</view>
+    </view>
+    <view class='c'></view>
+  </view> -->
+  <view class="order-info">
+    <view class="h">
+      <view class="label">配送信息</view>
+    </view>
+    <view class="item-b"  wx:if="{{orderInfo.status==21&&orderInfo.fulfillment.metadata.delivery.status==4}}">
+      <text class="item-sub">送达时间</text>
+      <text class="item-info">{{orderInfo.fulfillment.metadata.delivery.finishTime}}</text>
+    </view>
+    <view class="item-b">
+      <text class="item-sub">收获地址</text>
+      <text class="item-info">{{orderInfo.address.address}}</text>
+    </view>
+    <view class="item-b">
+      <text class="item-sub">配送方式</text>
+      <text class="item-info">{{orderInfo.fulfillment.typeName}}</text>
+    </view>
+    <!-- <view class="item-b">
+      <text class="item-sub">配送骑手</text>
+      <text class="item-info">得分</text>
+    </view> -->
+  </view>
+   <!-- 到店自提提货信息开始 -->
+    <!-- <view class="bg" wx:if="{{orderInfo.status==21&&orderInfo.fulfillment.metadata.delivery.status>2}}">
+    <view class="ex_info_view" wx:if="{{orderInfo.status==21&&orderInfo.fulfillment.metadata.delivery.status==4}}">
+      <view class="ex_left">提货时间：</view>
+      <view class="ex_right">{{orderInfo.fulfillment.metadata.delivery.finishTime}}</view>
+    </view>
+    <view class="ex_info_view">
+      <view class="ex_left">提货地址：</view>
+      <view class="ex_addr_view">
+        <view class="ex_right">{{orderInfo.address.receiverName}}</view>
+        <view class="ex_right">{{orderInfo.address.phone}}</view>
+        <text class="ex_right_spe">{{orderInfo.address.address}}</text>
+      </view>
+    </view>
+    <view class='c'></view>
+  </view> -->
+    <!-- 到店自提提货信息结束 -->
+
+  <!-- <view class="bg">
+    <view class="ex_info_view">
+      <view class="ex_left">订单号：</view>
+      <view class="ex_right">{{orderInfo.sn}}</view>
+    </view>
+    <view class="ex_info_view" wx:if="{{orderInfo.status==21}}">
+      <view class="ex_left">支付方式：</view>
+      <view class="ex_addr_view">
+        <view class="ex_right">微信支付</view>
+      </view>
+    </view>
+    <view class="ex_info_view">
+      <view class="ex_left">下单时间：</view>
+      <view class="ex_right">{{orderInfo.formatPaidTime}}</view>
+    </view>
+  </view> -->
+  <view class="order-info">
+    <view class="h">
+      <view class="label">订单信息</view>
+    </view>
+    <view class="item-b">
+      <text class="item-sub">订单号</text>
+      <text class="item-info">{{orderInfo.sn}}</text>
+    </view>
+    <view class="item-b">
+      <text class="item-sub">下单时间</text>
+      <text class="item-info">{{orderInfo.formatPaidTime}}</text>
+    </view>
+  </view> 
+</view>

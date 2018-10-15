@@ -1,0 +1,150 @@
+<view class="container">
+  <view class='stayouting' wx:if="{{shop.mallConfig.isBizTime==false}}"> 商城歇业中，暂不接单</view>
+  <navigator class='service-policy_merchant' url="{{mallShopCount > 1 ? '/pages/takeaway/giftList_ta/giftList_ta' : ''}}">
+    <view class='service-policy_merchantall'>
+      <image class='service-policy_merchantImg' mode="aspectFill" src="{{shop.media[0].url}}"></image>
+      <view class='service-policy_merchantInfo'>
+        <view class='service-policy_merchantName'>{{showName}}</view>
+        <view class='service-policy_merchantDistribution'> 最大配送距离 {{maxDistance}}km</view>
+
+        <view class='service-policy_merchantDistribution'>起送¥ {{startFee}}</view>
+        <!-- <view class='service-policy_merchantDistribution'>营业时间：{{shop.bizTimes[0].startTime}}-{{shop.bizTimes[0].endTime}}</view> -->
+      </view>
+    </view>
+    <image class="arrow" wx:if="{{mallShopCount > 1}}" src='../../../static/images/menu_shop_more.png' background-size="cover" />
+  </navigator>
+
+  <view class="catalog">
+    <scroll-view class="cate" scroll-y="true" bindscrolltolower="addPage">
+      <view class="bd">
+        <view class="item" wx:for="{{goodsList}}" wx:for-item="item" wx:key="$this">
+          <navigator url="/pages/goods/goods?id={{item.id}}" data-item="{{item}}">
+            <image-o o-class="icon" mode="aspectFill" src="{{item.media[0].url}}" resize="w:220"/>
+          </navigator>
+          <text class="txt">{{item.name}}</text>
+          <view class="price">￥
+            <text>{{(item.price / 100)}}</text>元</view>
+          <view class="crol">
+            <text class="remove" style="background: {{mainColor}};" bindtap="removeProduct" data-item="{{item}}" wx:if="{{item.number > 0 && !item.hasParam}}"></text>
+
+            <text class="num" style="color: {{mainColor}};" wx:if="{{item.number > 0}}">{{item.number}}</text>
+            <button class="add" style="background: {{mainColor}};" data-item="{{item}}" open-type="getUserInfo" bindgetuserinfo="addProductAuth" wx:if="{{shop.mallConfig.isBizTime!==false && item.status == 'ON'}}"></button>
+            <text class="product-sold-out" wx:if="{{item.status == 'SOLD_OUT'}}">已售罄</text>
+          </view>
+        </view>
+      </view>
+      <view class="weui-loadmore" wx:if="{{isLoading}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+      </view>
+      <view class="weui-loadmore weui-loadmore_line" wx:if="{{noMoreData && goodsList.length > 5}}">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我是有底线的</view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="model" wx:if="{{isShow}}">
+    <view class="list" animation="{{modelAnimation}}">
+      <view class="ctrl">
+        <text class="left">商城已选商品</text>
+        <view class="right" bindtap="clearCheckList">
+          <image src="../../../static/images/takeout_clear.png" class='takeoutclearimage'></image>
+          <text>清空</text>
+        </view>
+      </view>
+      <scroll-view scroll-y class="item-box">
+        <view class="item" wx:for="{{checkedList}}" wx:key="$this" wx:for-item="item">
+          <view class="name">
+            <!-- <view class="item-cell-left"> -->
+            <view class="item-cell-left-top">{{item.name}}</view>
+            <view class="item-cell-left-bottom" wx:if="{{item.metadata.hasParam}}">{{item.metadata.norm}}{{item.metadata.norm&&item.metadata.attr?"|":""}}{{item.metadata.attr}}</view>
+            <!-- </view> -->
+          </view>
+          <text class="price">¥{{(item.metadata.price  * item.metadata.number)/ 100}}</text>
+
+          <view class="crol">
+            <text class="remove" style="background: {{mainColor}};" bindtap="removeItem" data-item="{{item}}" wx:if="{{item.metadata.number > 0}}"></text>
+            <text class="num" style="color: {{mainColor}};" wx:if="{{item.metadata.number > 0}}">{{item.metadata.number}}</text>
+            <text class="add" style="background: {{mainColor}};" bindtap="addItem" data-item="{{item}}"></text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="bg" animation="{{modelbgAnimation}}" bindtap="hide" bindtouchstart="showList"></view>
+  </view>
+
+  <view class="foot" wx:if="{{!isShowMerchantInfo}}">
+    <view class="left" bindtap="showList">
+      <view class="img_wrap">
+        <image src="../../../static/images/takeout_cart.png" data-index="{{totleLength}}"  mode="scaleToFill"></image>
+        <text wx:if="{{totleLength > 0}}">{{totleLength}}</text>
+      </view>
+      <view class="checked_list">
+        <text wx:if="{{checkedList.length == 0}}" class="noData">未选购商品</text>
+        <text wx:if="{{checkedList.length > 0}}" class="price">总计：<text>￥{{totle / 100}}</text> </text>
+      </view>
+    </view>
+    <text class="submit" bindtap="{{submitclick}}" style="background: {{checkedList.length > 0 ? submitcolor : '#ffffff'}};">{{checkedList.length > 0 ? submitname : ''}}</text>
+  </view>
+  
+  <view class="preview-model" catchtouchmove="stop" wx:if="{{isPreviewing}}" animation="{{previewAnimationData}}">
+    <view class="preview-model-content" animation="{{animationData}}">
+      <view class="close"></view>
+      <image src="{{currentPrewiewGoods.media[0].url}}" mode="scaleToFill"></image>
+      <view class="name">{{currentPrewiewGoods.name}}</view>
+      <view class="info">
+        <text class="price">￥{{currentPrewiewGoods.price / 100}}</text>
+        <view class="crol">
+          <text class="remove" style="background: {{mainColor}};" bindtap="remove" data-item="{{currentPrewiewGoods}}" wx:if="{{currentPrewiewGoods.number > 0}}"></text>
+          <text class="num" style="color: {{mainColor}};" wx:if="{{currentPrewiewGoods.number > 0}}">{{currentPrewiewGoods.number}}</text>
+          <text class="add" style="background: {{mainColor}};" bindtap="add" data-item="{{currentPrewiewGoods}}"></text>
+        </view>
+      </view>
+    </view>
+    <view class="bg" bindtap="hidePreview"></view>
+  </view>
+
+  <view class="preview-model" catchtouchmove="stop" animation="{{previewAnimationData}}" wx:if="{{showAddParam}}">
+    <view class="preview-model-content" animation="{{animationData}}">
+      <view class="toast-name">{{productTmp.name}}</view>
+      <image class="toast-close" bindtap="hideToast" src='../../../static/images/takeout_delete.png'></image>
+      <scroll-view scroll-y='true' class="toast-content">
+        <template is="normCell" data="{{normsTmp,mainColor:mainColor}}" wx:if="{{normsTmp[0]}}" />
+        <block wx:for="{{attrsTmp}}" wx:for-index="idx" wx:for-item="item" wx:key="name">
+          <template is="attrCell" data="{{...item,index:idx,mainColor:mainColor}}" />
+        </block>
+      </scroll-view>
+      <view class="toast-info info">
+        <view>
+          <text class="price">￥{{priceTmp / 100}}</text>
+          <text style='color:#999999;text-decoration:line-through;padding-left:16rpx;'>￥{{productTmp.price / 100}}</text>
+        </view>
+
+        <text class="toast-finish" style="background: {{mainColor}};" bindtap="addParamFinish">加入购物车</text>
+      </view>
+    </view>
+    <view class="bg" bindtap="hideToast"></view>
+  </view>
+
+</view>
+
+<template name="normCell">
+  <view class="cell-content">
+    <view class="cell-name">规格</view>
+    <view class="cell-values-content">
+      <block wx:for="{{normsTmp}}" wx:for-index="idx" wx:for-item="item" wx:key="id">
+        <view style="{{item.isChoiced?'border-color:#434343;color:#434343;':''}}" class="cell-value" bindtap="choiceParam" data-v_idx="{{idx}}" data-type="norm">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+</template>
+
+<template name="attrCell">
+  <view class="cell-content">
+    <view class="cell-name">{{name}}</view>
+    <view class="cell-values-content">
+      <block wx:for="{{values}}" wx:for-index="idx" wx:for-item="item" wx:key="id">
+        <view style="{{idx==choiceIndex?'border-color:#434343;color:#434343;':''}}" class="cell-value" bindtap="choiceParam" data-v_idx="{{idx}}" data-idx="{{index}}" data-type="attr">{{item}} </view>
+      </block>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,222 @@
+
+.modalContainer {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .modalContainer .modal {
+    width: 100%;
+    height: auto;
+    background-color: white;
+  }
+  
+  .modal .itemsc {
+    height: auto;
+  }
+  
+ 
+  
+  .modal .footer {
+    background-color: #434343;
+    width:692rpx;
+    border-radius:8rpx;
+    height: 80rpx;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left:32rpx;
+  }
+  
+  .modal .footer .addIcon {
+    display: block;
+    height: 40rpx;
+    width: 40rpx;
+    background: url(https://oss.qianbaocard.org/20180920/fda310b6a81c45b99f4b49dd538ad388.png) 0 0 no-repeat;
+    background-size: 40rpx;
+    margin-right: 20rpx;
+  }
+  
+  .footer .addText {
+    color: #fff;
+    font-size: 32rpx;
+  }
+  
+ .changebutton {
+  height: 80rpx;
+  text-align: center;
+  margin-left: 31.25rpx;
+  margin-right: 31.25rpx;
+  margin-top:32rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  color: #434343;
+  border-style: solid;
+  border-radius: 8rpx;
+  border-width: 2rpx;
+  border-color: #434343;
+  background: white;
+}
+  
+  .bg {
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+  }
+  
+  .container.noscroll {
+    position: flex;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .beizhu {
+    background-color: white;
+    width: auto;
+    height: 70rpx;
+    display: flex;
+    align-items: center;
+    margin-top: 10rpx;
+  }
+  
+  .paddingbottom {
+    padding-bottom: 120rpx;
+  }
+  
+  .weui-cell__bd, .weui-cell__ft {
+    line-height: 50rpx;
+    height: 50rpx;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    color: #434343;
+    font-size: 28rpx;
+    font-weight: 700;
+  }
+  
+  .weui-cell__ft {
+    color: #666;
+    width: 400rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .empty-view {
+    height: 600rpx;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .empty-view .icon {
+    height: 248rpx;
+    width: 258rpx;
+    margin-bottom: 10rpx;
+  }
+  
+  .empty-view .text {
+    width: auto;
+    font-size: 28rpx;
+    line-height: 35rpx;
+    color: #999;
+  }
+  
+  .modal .list {
+    padding-left: 31.25rpx;
+    padding-right: 31.25rpx;
+    background-size: auto 10.5rpx;
+    /* margin-bottom: 90rpx; */
+  }
+  
+  .list .item {
+    width:100%;
+    height: 156.55rpx;
+    align-items: center;
+    display: flex;
+    border-bottom: 1rpx solid #dcd9d9;
+  }
+  
+  .list .l {
+    width: 60rpx;
+    height: 156.55rpx;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .list .c {
+    flex: 1;
+    height: 156.55rpx;
+    position: absolute;
+    margin-top: 45rpx;
+    left: 100rpx;
+    right: 125rpx;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .list .addresslocation {
+    height: 37rpx;
+    font-size: 25rpx;
+    line-height: 37rpx;
+    overflow: hidden;
+    color: #666;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 6.25rpx;
+  }
+  
+  .list .namephone {
+    height: 29rpx;
+    font-size: 29rpx;
+    line-height: 29rpx;
+    overflow: hidden;
+    color: #333;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .list .r {
+    width: 100rpx;
+    height: 156.55rpx;
+    overflow: hidden;
+    display: flex;
+    position: absolute;
+    right: 0rpx;
+    margin-top: 58rpx;
+  }
+  
+  .list .editIcon {
+    display: block;
+    width: 30rpx;
+    height: 30rpx;
+    background: url(https://oss.qianbaocard.org/20180621/65e1e34306444a28926a4a221336949f.png) 0 0 no-repeat;
+    background-size: 30rpx;
+    margin-right:20rpx;
+  }
+  .list .delIcon {
+    display: block;
+    width: 30rpx;
+    height: 30rpx;
+    background: url(https://oss.qianbaocard.org/20180920/dde478b325904e6f8ebfd6063f6fe611.png) 0 0 no-repeat;
+    background-size: 30rpx;
+  }
+
+  .outrange{
+    height:auto;
+    margin-bottom: 40rpx;
+  }
+  .outrange .outaddress{
+    height:36rpx;
+    width:280rpx;
+    margin:32rpx 0 16rpx 32rpx;
+    color:28rpx;
+    color:#999999;
+  }

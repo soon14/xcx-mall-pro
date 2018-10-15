@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "WI-FI",
+	"enablePullDownRefresh": false,
+	"usingComponents": {
+		"homepage": "/component/homepage/homepage",
+		"auth": "/component/auth/auth"
+	}
+}

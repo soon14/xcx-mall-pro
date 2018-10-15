@@ -1,0 +1,172 @@
+
+
+<!-- 规格属性弹框 -->
+<template name="normCell">
+  <view class="cell-content">
+    <view class="cell-name">规格</view>
+    <view class="cell-values-content">
+      <block wx:for="{{norms}}" wx:for-index="idx" wx:for-item="item" wx:key="id">
+        <view style="{{item.isChoiced?'border-color:#434343;color:#434343;':''}}" class="cell-value" bindtap="choiceParam" data-v_idx="{{idx}}" data-type="norm">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+</template>
+
+<template name="attrCell">
+  <view class="cell-content">
+    <view class="cell-name">{{name}}</view>
+    <view class="cell-values-content">
+      <block wx:for="{{values}}" wx:for-index="idx" wx:for-item="item" wx:key="id">
+        <view style="{{idx==choiceIndex?'border-color:#434343;color:#434343;':''}}" class="cell-value" bindtap="choiceParam" data-v_idx="{{idx}}" data-idx="{{index}}" data-type="attr">{{item}} </view>
+      </block>
+    </view>
+  </view>
+</template>
+
+
+<!-- 支付条 -->
+
+<template name="cashier">
+  <view class="foot">
+    <view class="left" bindtap="showList">
+      <view class="img_wrap">
+        <image src="/static/images/takeout_cart.png" mode="scaleToFill"></image>
+        <text wx:if="{{number > 0}}">{{number}}</text>
+      </view>
+      <view class="checked_list">
+        <!-- <text wx:if="{{number == 0}}" class="noData">未选购商品</text> -->
+        <view class="price">
+          总计：
+          <text>￥{{money / 100}}</text> 
+        </view>
+      </view>
+    </view>
+    <text class="submit" bindtap="submit" style="background: {{number > 0 ? btnColor : '#ffffff'}};">{{number > 0 ? btnTitle : ''}}</text>
+  </view>
+</template>
+
+<!-- 分类 -->
+
+<template name="category">
+  <scroll-view class="category" scroll-y="true">
+    <view class="item {{ currentCategory.id == item.id ? 'active' : ''}}" style="{{item.name.length>4?'text-align:left;line-height: 30rpx;':'line-height: 60rpx;'}}" wx:key="id" wx:for="{{navList}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="switchCate">
+      {{item.name}}
+      <view class="badge" wx:if="{{item.number > 0}}">
+        <text>{{item.number}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+
+<!-- 加减 -->
+
+<template name="menuAdd">
+  <auth a-class="menu-change-button" data-item="{{item}}" bindfinish="{{ontap}}">
+    <image class="menu-change" src="/static/images/menu_add.png" mode="scaleToFill"></image>
+  </auth>
+</template>
+
+<template name="menuRemove">
+  <view class="menu-change-button" data-item="{{item}}" bindtap="{{ontap}}">
+    <image class="menu-change" src="/static/images/menu_remove.png" mode="scaleToFill"></image>
+  </view>
+</template>
+
+<!-- 商品 -->
+
+<template name="product">
+    <view class="category-tip">
+      <view class="category-name">{{categoryName}}</view>
+    </view>
+    <scroll-view class="cate" scroll-y="true" bindscrolltolower="addPage">
+      <view class="bd {{'bd' + cataType}}">
+        <view class="item" wx:for="{{goodsList}}" wx:for-item="item" wx:key="id">
+          <navigator url="/pages/goods/goods?id={{item.id}}" data-item="{{item}}">
+            <image-o o-class="icon" mode="aspectFill" src="{{item.media[0].url}}" resize="{{cataType==2?'w:600':'w:220'}}"/>
+            <view class="product-new product-left" wx:if="{{item.hasNew}}">新品</view>
+            <view class="product-hot product-left" wx:if="{{!item.hasNew && item.hasHot}}">人气</view>
+            <view class="product-hot product-right" wx:if="{{item.hasNew && item.hasHot}}">人气</view>
+          </navigator>
+          <text class="txt">{{item.name}}</text>
+          <text class="description">{{item.description}}</text>
+          <view class="price">
+            ￥{{(item.price / 100)}}元{{item.unit?"/"+item.unit:""}}
+          </view>
+          <!-- <view class="description" wx:if = "{{item.tags.length!==0}}"> -->
+            <!-- 逻辑有问题 -->
+           <!-- <view wx:if ="{{item.tags.length==2}}">
+            <image style='width:90rpx;height:28rpx' src="/static/images/takeout_fresh.png"></image>
+            <image style='width:90rpx;height:28rpx;padding-left:10rpx;'  src="/static/images/takeout_hot.png"></image>
+           </view>
+           <view wx:if ="{{item.tags.length==1}}">
+            <image style='width:90rpx;height:28rpx' src="{{item.tags[0].code == 'hot-product'?'/static/images/takeout_hot.png' : '/static/images/takeout_fresh.png'}}"></image>
+           </view> -->
+          <!-- </view> -->
+          <view class="crol">
+            <template is="menuRemove" wx:if="{{item.number > 0 && !item.hasParam}}" data="{{item, ontap:'removeProduct'}}"/>
+            <text class="num" style="color: {{mainColor}};" wx:if="{{item.number > 0 && !item.hasParam}}">{{item.number}}</text>
+            <template is="menuAdd" wx:if="{{canEdit && item.status == 'ON' && !item.hasParam}}" data="{{item, ontap:'addProduct'}}"/>
+            <auth a-class="menu-param" wx:if="{{canEdit && item.status == 'ON' && item.hasParam}}" data-item="{{item}}" bindfinish="addProduct">
+              选规格
+            <!-- <view class="product-badge" wx:if="{{item.number > 0}}">
+              {{item.number}}
+            </view> -->
+            </auth>
+            <text class="product-sold-out" wx:if="{{item.status == 'SOLD_OUT'}}">已售罄</text>
+          </view>
+        </view>
+      </view>
+      <view class="weui-loadmore" wx:if="{{isLoading}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+      </view>
+      <view class="weui-loadmore weui-loadmore_line" wx:if="{{noMoreData && goodsList.length > 5}}">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我是有底线的</view>
+      </view>
+    </scroll-view>
+</template>
+
+<template name="paramChoice">
+  <view class="toast-name">{{product.name}}</view>
+    <image class="toast-close" bindtap="hideToast" src='/static/images/takeout_delete.png'></image>
+    <scroll-view scroll-y='true' class="toast-content">
+      <template is="normCell" data="{{norms,mainColor:mainColor}}" wx:if="{{norms[0]}}"/>
+      <block wx:for="{{attrs}}" wx:for-index="idx" wx:for-item="item" wx:key="name">
+        <template is="attrCell" data="{{...item,index:idx,mainColor:mainColor}}" />
+      </block>
+    </scroll-view>
+    <view class="toast-info">
+      <view>
+        <text class="toast-price">￥{{price / 100}}</text>
+        <text style='color:#999999;text-decoration:line-through;padding-left:16rpx;'>￥{{product.price / 100}}</text>
+      </view>
+      <text class="toast-finish" style="background: {{mainColor}};" bindtap="addParamFinish">加入购物车</text>
+    </view>
+</template>
+
+<template name="menu">
+  <view class="ctrl">
+    <text class="left">{{title}}</text>
+    <view class="right" bindtap="clearMenuList">
+      <image src="/static/images/takeout_clear.png"></image>
+      <text>清空</text>
+    </view>
+  </view>
+  <scroll-view scroll-y class="item-box">
+    <view class="item" wx:for="{{menuList}}" wx:key="$this" wx:for-item="item">
+      <view class="name">
+        <view class="item-cell-left-top">{{item.name}}</view>
+        <view class="item-cell-left-bottom" wx:if="{{item.metadata.hasParam}}">{{item.metadata.norm}}{{item.metadata.norm&&item.metadata.attr?"|":""}}{{item.metadata.attr}}</view>
+      </view>
+      <text class="price">¥{{(item.metadata.price  * item.metadata.number)/ 100}}</text>
+      <view class="crol">
+        <template is="menuRemove" data="{{item,ontap:'removeItem'}}"/>
+        <text class="num" style="color: {{mainColor}};" wx:if="{{item.metadata.number > 0}}">{{item.metadata.number}}</text>
+        <template is="menuAdd" data="{{item,ontap:'addItem'}}"/>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+

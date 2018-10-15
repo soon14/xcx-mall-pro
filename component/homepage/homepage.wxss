@@ -1,0 +1,11 @@
+/* component/homepage/homepage.wxss */
+
+.add_icon{
+  position: fixed;
+  width:36rpx;
+  height:36rpx;
+  bottom: 120rpx;
+  right: 70rpx;
+  display: block;
+  background-size: 36rpx;
+}

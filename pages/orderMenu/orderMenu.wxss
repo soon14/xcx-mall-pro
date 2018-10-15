@@ -1,0 +1,304 @@
+@import "../menu/menu.wxss";
+
+page {
+  height: 100%;
+}
+
+.container {
+  background: #f9f9f9;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.m-menu {
+  display: flex;
+  height: 131rpx;
+  width: 750rpx;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e6e6e6;
+}
+
+.m-menu .item {
+  flex: 1;
+  display: block;
+  padding: 20rpx 0;
+}
+
+.m-menu image {
+  display: block;
+  width: 58rpx;
+  height: 58rpx;
+  margin: 0 auto;
+  margin-bottom: 12rpx;
+}
+
+.m-menu text {
+  display: block;
+  font-size: 24rpx;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 1;
+  color: #333;
+}
+
+.share {
+  position: absolute;
+  right: 0;
+  top: 80rpx;
+  width: 176rpx;
+  height: 52rpx;
+  color: #fff;
+  border-radius: 0;
+  border-bottom-left-radius: 40rpx;
+  border-top-left-radius: 40rpx;
+  text-align: center;
+  line-height: 52rpx;
+  z-index: 10;
+  font-size: 24rpx;
+}
+.service-policy{
+    padding: 0 30rpx;
+    background: #f4f4f4;
+    height: 64rpx;
+}
+
+.service-policy .item{ 
+    float: left;
+    font-size: 24rpx;
+    color: #999999;
+    height: 64rpx;
+    line-height: 64rpx;
+    margin: 0;
+    width: 230rpx;
+}
+
+.service-policy .item:nth-child(2) {
+  text-align: center;
+}
+
+.service-policy .item:nth-child(3) {
+  text-align: right;
+}
+
+.search {
+  height: 88rpx;
+  width: 100%;
+  padding: 0 30rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.search .input {
+  width: 690rpx;
+  height: 56rpx;
+  background: #ededed;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search .icon {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-2fb94833aa.png) center no-repeat;
+  background-size: 100%;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.search .txt {
+  height: 42rpx;
+  line-height: 42rpx;
+  color: #666;
+  padding-left: 10rpx;
+  font-size: 30rpx;
+}
+
+.catalog {
+  flex: 1;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 64rpx;
+  bottom: 100rpx;
+  border-top: 1px solid #fafafa;
+}
+
+.banner {
+  display: block;
+  height: 222rpx;
+  position: relative;
+  margin-right: 30rpx;
+}
+
+.banner .image {
+  position: absolute;
+  top: 30rpx;
+  left: 0;
+  border-radius: 4rpx;
+  height: 192rpx;
+  width: 100%;
+}
+
+.banner .txt {
+  position: absolute;
+  top: 30rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 28rpx;
+  left: 0;
+  height: 192rpx;
+  line-height: 192rpx;
+  width: 100%;
+}
+
+.model {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 100rpx;
+}
+
+.model .bg {
+  background: rgba(0,0,0,0.4);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: 9;
+}
+
+.model .list {
+  background: #fff;
+  min-height: 100rpx;
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.preview-model {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  opacity: 0
+}
+
+.preview-model .preview-model-content {
+  position: absolute;
+  background: #fff;
+  left: 10%;
+  right: 10%;
+  top: 20%;
+  height: 680rpx;
+  z-index: 1;
+  border-radius: 20rpx;
+  overflow: hidden;
+	width: 80vw;
+}
+
+.preview-model .bg {
+  background: rgba(0,0,0,0.2);
+  opacity: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.qb-icon-084tuichu {
+  transform: translateY(-2rpx);
+}
+
+.weui-loadmore__tips_in-line {
+  background: #fff;
+}
+
+.item-cell-left-bottom{
+  color:#999;
+  font-size:24rpx;
+  white-space:nowrap;
+}
+
+.item-cell-left-top{
+  height:40rpx;
+}
+
+
+.auth-content{
+  position:absolute;
+  left:15%;
+  right:15%;
+  top:32%;
+  background:white;
+  border-radius:20rpx;
+}
+
+.auth-title{
+  text-align:center;
+  font-size:36rpx;
+  height:90rpx;
+  line-height:100rpx;
+}
+
+
+.auth-info{
+  text-align:center;
+  color:#999;
+  height:80rpx;
+  /*padding:0 40rpx;*/
+}
+
+
+.auth-btn{
+  border-top:1px solid #e0e0e0;
+  display:flex;
+  justify-content:space-between;
+}
+
+.auth-btn button{
+  width:300rpx;
+  height:88rpx;
+  color:#32CD32;
+  border-color:white;
+  font-size:34rpx;
+  background:white;
+}
+
+/*.auth-btn button:nth-child(1){
+  color:#999;
+}*/
+
+.auth-model {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+}
+.auth-model .bg {
+  background: rgba(0,0,0,0.2);
+  opacity: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+

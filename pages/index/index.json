@@ -1,0 +1,6 @@
+{
+  "usingComponents":{
+    "coupons":"../../../component/coupon/coupon",
+    "image-o": "/component/image-o/image-o"
+  }
+}

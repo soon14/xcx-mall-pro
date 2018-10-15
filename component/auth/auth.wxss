@@ -1,0 +1,9 @@
+/* component/auth/auth.wxss */
+.button {
+	/*background:none;*/
+	padding:0;
+}
+
+.button::after {
+	border:none;
+}

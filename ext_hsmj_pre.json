@@ -1,0 +1,24 @@
+{
+  "extEnable": true,
+  "extAppid": "wxcabc5ad1b5ea66a2",
+  "directCommit": false,
+  "ext": {
+    "id": "jingliaoli",
+    "topicCategory": "1300",
+    "ApiRootUrl": "https://vinci-api-pre.qianbaocard.org",
+    "version": "v1",
+    "mainColor": "#333",
+    "SellerID": "5b59394dfee6bc26bc8dc1e1",
+    "MpAppID": "wxcabc5ad1b5ea66a2",
+    "ald_config": {
+      "app_key": "2323232",
+      "getLocation": 0,
+      "getUserinfo": 0
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#333",
+    "navigationBarTextStyle": "white"
+  }
+}

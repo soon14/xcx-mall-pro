@@ -1,0 +1,40 @@
+<!--pages/ucenter/newaddress/newaddress.wxml-->
+<view class="container">
+
+<!-- <view class="address-list" >
+        <view class="item"  bindtap="addressAddOrUpdate" data-address-id="1" data-address-title="编辑收货地址" data-address-name="老王" data-address-mobile="17556655983" data-address-locationAddress="上海市科技绿洲三期" data-address-detailAddress="13号楼2楼">
+            <view class="l">
+                <view class="name">老王</view>
+                <view class="default" wx:if="{{item.is_default}}">默认</view>
+            </view>
+            <view class="c">
+                <view class="mobile">17556655983</view>
+                <view class="address">上海市科技绿洲三期 13号楼2楼</view>
+            </view>
+            <view class="r">
+                <image catchtap="deleteAddress" data-address-id="1" class="del" src="/static/images/del-address.png"></image>
+            </view>
+        </view>
+    </view> -->
+    <view class="address-list" wx:if="{{ addressList.length > 0 }}">
+        <view class="item" wx:for="{{addressList}}" wx:key="{{item.id}}" bindtap="addressAddOrUpdate" data-address-id="{{item.id}}" >
+            <view class="l">
+                <view class="name">{{item.receiverName}}</view>
+                <!-- <view class="default" wx:if="{{item.is_default}}">默认</view> -->
+            </view>
+            <view class="c">
+                <view class="mobile">{{item.phone}}</view>
+                <view class="address">{{item.location.address + item.location.addition}}</view>
+            </view>
+            <view class="r">
+                <image catchtap="deleteAddress" data-address-id="{{item.id}}" class="del" src="/static/images/del-address.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="empty-view" wx:if="{{ addressList.length <= 0 }}">
+      <image class="icon" src="https://oss.qianbaocard.org/20180429/21c07e9ab3cb469c9cc3e5e43604be6c.png"></image>
+      <text class="text">收货地址在哪里</text>
+    </view> 
+    <view class="add-address" bindtap="addressAddOrUpdate" data-address-id="0">新建</view>
+</view>
+

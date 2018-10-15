@@ -1,0 +1,51 @@
+<view class="modalContainer">
+  <view class="modal">
+    <view class="itemsc" catchtap='stop' catchtouchmove='stop' wx:if="{{ addressList.length > 0 }}">
+      <view class="list">
+        <view class="item" wx:for="{{addressList}}">
+
+          <view class="l" wx:if="{{item.id == selectedAddress.id}}">
+            <icon class="name" type='success' size='15' color='#434343'></icon>
+          </view>
+          <view class="c" bindtap="addressSelect" data-address-id="{{item.id}}">
+            <view class="addresslocation">{{item.location.address + item.location.addition}}</view>
+            <view class="namephone">{{item.receiverName+"，"+item.genderName+"，"+item.phone}}</view>
+          </view>
+          <view class="r">
+            <image class="editIcon" bindtap="addressAddOrUpdate" data-address-id="{{item.id}}"></image>
+            <image class="delIcon" bindtap="deleteAddress" data-address-id="{{item.id}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="outrange">
+      <view class="outaddress">以下地址超出配送范围</view>
+      <!-- <view class="itemsc">
+        <view class="list">
+        <view class="item" wx:for="{{addressList}}">
+          <view class="c" bindtap="addressSelect" data-address-id="{{item.id}}">
+            <view class="addresslocation">{{item.location.address + item.location.addition}}</view>
+            <view class="namephone">{{item.receiverName+"，"+item.genderName+"，"+item.phone}}</view>
+          </view>
+          <view class="r">
+            <image class="editIcon" bindtap="addressAddOrUpdate" data-address-id="{{item.id}}"></image>
+            <image class="delIcon" bindtap="deleteAddress" data-address-id="{{item.id}}"></image>
+          </view>
+        </view>
+      </view>
+      </view> -->
+    </view>
+    <view class="empty-view" wx:if="{{ addressList.length <= 0 }}">
+      <image class="icon" src="https://oss.qianbaocard.org/20180429/21c07e9ab3cb469c9cc3e5e43604be6c.png"></image>
+      <text class="text">收货地址在哪里</text>
+    </view>
+    <view class="footer" catchtap="addressAddOrUpdate" data-address-id="0">
+      <image class="addIcon" />
+      <view class="addText">新增收货地址</view>
+    </view>
+    <view class="btns">
+      <button class="changebutton" bindtap="getWeixinAddress">获取微信收货地址</button>
+    </view> 
+  </view>
+  <!-- <view class="bg" animation="{{modelbgAnimation}}" catchtap="hide" bindtouchstart="openModal" catchtouchmove='stop'></view> -->
+</view>

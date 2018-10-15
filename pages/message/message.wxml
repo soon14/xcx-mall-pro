@@ -1,0 +1,30 @@
+<view class="container">
+    <!-- <button open-type='contact' session-from='{"nickName":"{{nickName}}","avatarUrl":"{{avatar}}"}'>聊天</button> -->
+    <!-- <view class="items">
+        <navigator class="item" wx:for="{{messageList}}" wx:key="{{item.id}}" bindtap="messageAddOrUpdate" data-message-id="{{item.id}}">
+            <view class="h">
+                <view class="l">{{item.name}}</view>
+                <view class="r">{{item.status}}</view>
+            </view>
+            <view class="subitem">
+                <view class="img">
+                    <image src="{{item.logo}}"></image>
+                </view>
+                <view class="info">
+                    <text class="name">{{item.name}} : {{item.slogan}}</text>
+                    <text class="number">{{item.description}}</text>
+                </view>
+                <view class="status"></view>
+            </view>
+            <view class="b">
+                <view class="l">编号：{{item.id}}</view>
+                <view class="r">
+                    <button class="btn" data-message-id="{{item.id}}" catchtap="deleteMessage" >删除</button>
+                </view>
+            </view>
+        </navigator>
+    </view>
+    <view class="empty-view" wx:if="{{ messageList.length <= 0 }}">
+      <text class="text">还没有消息</text>
+    </view> -->
+</view>

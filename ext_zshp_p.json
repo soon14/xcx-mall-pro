@@ -1,0 +1,57 @@
+{
+  "extEnable": true,
+  "extAppid": "wxc7bb649227bd78f0",
+  "directCommit": false,
+  "ext": {
+    "id": "zshp",
+    "topicCategory": "1369",
+    "ApiRootUrl": "https://vinci-api.qianbaocard.com",
+    "version": "v1",
+    "mainColor": "#FFB6C1",
+    "SellerID": "5ae775a710e0a00981653d88",
+    "MpAppID": "wxc7bb649227bd78f0",
+    "cataType": "2",
+		"ald_config": {
+			"app_key": "2323232",
+			"getLocation": 0,
+			"getUserinfo": 0
+		}
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#FFB6C1",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#fafafa",
+    "borderStyle": "white",
+    "selectedColor": "#b4282d",
+    "color": "#666",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/ic_menu_choice_nor.png",
+        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/topic/topic",
+        "iconPath": "static/images/ic_menu_topic_nor.png",
+        "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
+        "text": "活动"
+      },
+      {
+        "pagePath": "pages/orderMenu/orderMenu",
+        "iconPath": "static/images/ic_menu_sort_nor.png",
+        "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
+        "text": "点餐"
+      },
+      {
+        "pagePath": "pages/ucenter/index/index",
+        "iconPath": "static/images/ic_menu_me_nor.png",
+        "selectedIconPath": "static/images/ic_menu_me_pressed.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

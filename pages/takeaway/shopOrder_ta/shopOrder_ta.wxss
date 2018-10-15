@@ -1,0 +1,270 @@
+@import "../../menu/menu.wxss";
+
+page {
+  height: 100%;
+}
+
+.container {
+  background: #f9f9f9;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.stayouting{
+  width: 100%;
+  height: 80rpx;
+  /* position: absolute;
+  top: 0rpx; */
+  text-align: center;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  background: #e7e7eb;
+}
+
+.service-policy {
+  /* padding: 0 30rpx; */
+  background: white;
+  height: 190rpx;
+}
+
+.service-policy_merchant {
+  background: #434343;
+  width: 100%;
+  height: 190rpx;
+  padding-top: 30rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx; 
+  display: flex;
+  justify-content: space-between;
+}
+.service-policy_merchantall {
+  display: flex;
+}
+
+.service-policy_merchantImg {
+  width: 128rpx;
+  height: 128rpx;
+}
+
+.service-policy_merchantInfo {
+  margin-left: 15rpx;
+  padding: 15rpx;
+  height: 150rpx;
+}
+
+.service-policy_merchantName {
+  line-height: 32rpx;
+  color: white;
+  font-size: 32rpx;
+}
+
+.arrow {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 16rpx;
+  align-content: center;
+}
+
+.service-policy_merchantDistribution {
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  line-height: 26rpx;
+  color: #cccccc;
+  font-size: 24rpx;
+}
+
+.service-policy.choose {
+  height: 70rpx;
+  background-color: white;
+  display: flex;
+  padding-top: 20rpx;
+  justify-content: space-around;
+}
+
+.choose_title {
+  width: 220rpx;
+  text-align: center;
+}
+
+.merchantInfo {
+  flex: 1;
+  width: 100%;
+  background: white;
+  /* position: absolute;
+  left: 0;
+  right: 0;
+  top: 280rpx;
+  bottom: 0; */
+  border-top: 2px solid #fafafa;
+}
+
+.merchantInfo_item {
+  display: flex;
+  height: 100rpx;
+  width: 100%;
+  background-color: white;
+  border-top: 2px solid #fafafa;
+  align-items: center;
+  padding: 0rpx 30rpx;
+  justify-content: space-between;
+}
+
+.merchantInfo_t {
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.merchantInfo_icon {
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.catalog {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  margin-bottom: 100rpx;
+  border-top: 2px solid #fafafa;
+}
+
+.catalog .navname{
+  height: 60rpx;
+  flex: 1;
+  position: absolute;
+  top:0;
+  /* bottom: 0; */
+  right: 0;
+  width: calc(100% - 192rpx);
+  z-index: 5;
+}
+
+.navnamedetail{
+  height: 40rpx;
+  margin-top: 20rpx;
+  border-left: 6rpx solid #434343;
+  padding: 0 0 0 20rpx;
+  color: #434343;
+}
+
+
+.banner {
+  display: block;
+  height: 222rpx;
+  position: relative;
+  margin-right: 30rpx;
+}
+
+.banner .image {
+  position: absolute;
+  top: 30rpx;
+  left: 0;
+  border-radius: 4rpx;
+  height: 192rpx;
+  width: 100%;
+}
+
+.banner .txt {
+  position: absolute;
+  top: 30rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 28rpx;
+  left: 0;
+  height: 192rpx;
+  line-height: 192rpx;
+  width: 100%;
+}
+
+.model {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 100rpx;
+  z-index: 10;
+}
+
+.model .bg {
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+}
+
+.model .list {
+  background: #fff;
+  min-height: 100rpx;
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.preview-model {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  opacity: 0;
+}
+
+.preview-model .preview-model-content {
+  position: absolute;
+  background: #fff;
+  left: 10%;
+  right: 10%;
+  top: 20%;
+  height: 680rpx;
+  z-index: 10;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.preview-model .bg {
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.qb-icon-084tuichu {
+  transform: translateY(-2rpx);
+}
+
+.weui-loadmore__tips_in-line {
+  background: #fff;
+}
+
+.item-cell-left-bottom{
+  color:#999;
+  font-size:24rpx;
+  white-space:nowrap;
+}
+
+.item-cell-left-top{
+  height:40rpx;
+}
+
+.item-cell-left-bottom{
+  color:#999;
+  font-size:24rpx;
+  white-space:nowrap;
+}
+
+.item-cell-left-top{
+  height:40rpx;
+}
+

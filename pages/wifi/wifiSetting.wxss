@@ -1,0 +1,123 @@
+/* pages/wifi/wifiSetting.wxss */
+
+page{
+    min-height: 100%;
+    width: 100%;
+    background: #f4f4f4;
+}
+
+/* .container{
+    padding:50rpx 40rpx;
+    background: #f4f4f4;
+} */
+
+.wifi-content {
+  position: absolute;
+  background: #fff;
+  left: 10%;
+  right: 10%;
+  top: 30%;
+  /* height: 400rpx; */
+  z-index: 1;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.wifi-info {
+  margin:32rpx 32rpx;
+  background: white;
+  border-radius: 10rpx;
+	box-shadow:0px 4px 32px 0px rgba(221,221,221,0.3);
+}
+
+.wifi-flex {
+    display:flex;
+    justify-content:space-between; 
+
+    height: 136rpx;
+    line-height: 136rpx; 
+}
+
+.wifi-title {
+  font-size: 32rpx; 
+  margin-left: 32rpx;
+  color: rgba(51,51,51,1);
+}
+
+.wifi-value{
+  min-width: 150rpx;
+  max-width: 270rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  text-align: right;
+	font-size: 28rpx; 
+  color: rgba(153,153,153,1);
+}
+
+.icon-right{
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: middle;
+}
+
+.wifi-flex-right{
+    margin-right:22rpx;
+    display:flex;
+    justify-content:space-between; 
+}
+
+.wifi-btn{
+   border-top: 1rpx solid #ddd; 
+}
+
+.wifi-ok{
+    text-align:center; 
+    height:80rpx;
+		line-height: 80rpx;
+		background:rgb(67, 67, 67);
+		box-shadow:0rpx 4rpx 32rpx 0rpx rgba(67,67,67,0.1);
+		border-radius:8rpx;
+    color: white;
+    font-size: 32rpx;
+    margin:0 32rpx;
+    margin-top: 64rpx;
+}
+
+.wifi-copy{
+  padding: 30rpx;
+  color: #108ee9;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.preview-model {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  /*opacity: 0*/
+}
+
+.preview-model .bg {
+  background: rgba(0,0,0,0.2);
+  opacity: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.add_icon{
+  position: fixed;
+  width:150rpx;
+  height:150rpx;
+  bottom: 30rpx;
+  right: 20rpx;
+  display: block;
+  background: url(https://oss.qianbaocard.org/20180808/524811c360b04b1fa79c2124e638b29c.png) 0 0 no-repeat;
+  background-size: 150rpx;
+}

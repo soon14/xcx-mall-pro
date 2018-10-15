@@ -1,0 +1,220 @@
+<!-- <scroll-view class="container" scroll-y="true">
+  <view wx:if="{{!openAttr}}">
+    <swiper class="activityimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+     <swiper-item wx:for="{{place.media}}" wx:key="{{item.id}}">
+        <image src="{{item.url}}" background-size="cover"></image>
+      </swiper-item>
+    </swiper>
+    
+    <view class="service-policy">
+      <view class="item">编号：{{place.sn}}</view>
+      <view class="item">类型：{{place.type=='DESK'?'散座':'包厢'}}</view>
+      <view class="item">门店：{{place.shop.name}}</view>
+    </view>
+    <view class="activity-info">
+      <view class="c">
+        <text class="name">{{activityInfo.title}}</text>
+        <text class="desc">{{activityInfo.statusName}}</text>
+        <text class="price">{{activityInfo.metadata.atime}}</text>
+        <view class="brand" >
+           <navigator url="../../shopDetail/shopDetail?id={{activityInfo.shop.id}}">
+            <text>{{activityInfo.shop.name}}导航</text>
+          </navigator> 
+        </view>
+      </view>
+    </view>
+
+    <view class="common-problem">
+      <view class="h">
+        <view class="line"></view>
+        <text class="title">主人留言</text>
+      </view>
+      <view class="b">
+        <view class="item" >
+          <view class="question-box">
+            <text class="spot"></text>
+            <text class="question">{{activityInfo.metadata.msgToFriend}}</text>
+          </view>
+          <view class="answer">
+            
+          </view>
+        </view>
+      </view>
+    </view>
+  
+    <view class="comments" wx:if="{{comment.count > 0}}">
+      <view class="h">
+        <navigator url="../comment/comment?valueId={{activity.id}}&typeId=0">
+          <text class="t">评价({{comment.count > 999 ? '999+' : comment.count}})</text>
+          <text class="i">查看全部</text>
+        </navigator>
+      </view>
+      <view class="b">
+        <view class="item">
+          <view class="info">
+            <view class="user">
+              <image src="{{comment.data.avatar}}"></image>
+              <text>{{comment.data.nickname}}</text>
+            </view>
+            <view class="time">{{comment.data.add_time}}</view>
+          </view>
+          <view class="content">
+            {{comment.data.content}}
+          </view>
+          <view class="imgs" wx:if="{{comment.data.pic_list.length > 0}}">
+            <image class="img"  wx:for="{{comment.data.pic_list}}" wx:key="{{item.id}}" src="{{item.pic_url}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="activity-attr">
+      <view class="l">
+       
+
+        <view class="item" wx:for="{{activityInfo.actors}}" wx:key="{{item.name}}">
+          <image class="left" src="{{item.avatar}}"></image>
+          <text class="right">{{item.nickName}}</text>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="detail">
+      <import src="../../lib/wxParse/wxParse.wxml" />
+      <template is="wxParse" data="{{wxParseData:activityDetail.nodes}}" />
+    </view>
+
+
+    <view class="related-activity" wx:if="{{relatedGoods.length > 0}}">
+      <view class="h">
+        <view class="line"></view>
+        <text class="title">大家都在看</text>
+      </view>
+      <view class="b">
+        <view class="item" wx:for="{{relatedGoods}}" wx:key="{{item.id}}">
+          <navigator url="/pages/activity/activity?id={{item.id}}">
+            <image class="img" src="{{item.list_pic_url}}" background-size="cover"></image>
+            <text class="name">{{item.name}}</text>
+            <text class="price">￥{{item.retail_price}}</text>
+          </navigator>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view wx:if="{{openAttr}}" class="attr-pop">
+    <view class="img-info">
+      <image class="img" src="{{activity.media[0].url}}"></image>
+      <view class="info">
+        <view class="c">
+          <view class="p">桌台：{{activity.sn}}</view>
+          <view class="a">说明: {{activity.description}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="spec-con">
+      <view class="spec-item" wx:for="{{specificationList}}" wx:key="{{item.id}}">
+        <view class="name">{{item.name}}</view>
+        <view class="values">
+          <view class="value {{vitem.paixu ? 'selected' : ''}}" bindtap="clickSkuValue" wx:for="{{item.childsCurGoods}}" wx:for-item="vitem" wx:key="{{vitem.id}}" data-value-id="{{vitem.id}}" data-name-id="{{vitem.propertyId}}">{{vitem.name}}</view>
+        </view>
+      </view>
+
+      <view class="number-item">
+        <view class="name">人数</view>
+        <view class="selnum">
+          <view class="cut" bindtap="cutNumber">-</view>
+          <input value="{{number}}" class="number" disabled="true" type="number" />
+          <view class="add" bindtap="addNumber">+</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+ <view class="bottom-btn">
+    <view class="l l-collect {{ openAttr ? 'back' : ''}}" bindtap="closeAttrOrCollect">
+      <image class="icon" src="{{ collectBackImage }}"></image>
+    </view>
+    <view class="l l-cart">
+      <view class="box">
+        <image bindtap="openHomePage" class="icon" src="/static/images/ic_menu_choice_nor.png"></image>
+
+      </view>
+    </view>
+    <view class="c" bindtap="leaveActivity" wx:if="{{!isOwner && isActor}}">退出活动</view>
+    <view class="c" bindtap="closeActivity" wx:if="{{isOwner && activityInfo.status!='CANCELED'}}">取消活动</view>
+    <view class="r" bindtap="joinActivity" wx:if="{{!isActor && activityInfo.status!='CANCELED'}}">接受邀请</view>
+      <button open-type="share" class="r"  wx:if="{{(isOwner || isActor) && activityInfo.status!='CANCELED'}}" >邀请好友</button>
+ </view> -->
+
+ <view class="container">
+    <swiper class="activityimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+      <swiper-item wx:for="{{place.media}}" wx:key="{{item.id}}">
+        <image src="{{item.url}}" background-size="cover"></image>
+      </swiper-item>
+    </swiper>
+    <view class="h-wrap">
+      <button plain="true" open-type="share" wx:if="{{activityInfo.status != 'CANCELED'}}"><icon class="qb-icon qb-icon-fenxiang"></icon></button>
+      <view class="h-title">{{activityInfo.title}}<icon wx:if="{{isOwner}}" class="qb-icon qb-icon-shezhi" bindtap="setting"></icon></view>
+      <view class="h-time">{{activityInfo.metadata.atime}}</view>
+    </view>
+    <view class="service-policy">
+      <!-- <view class="item">编号：{{place.sn}}</view> -->
+      <view class="item">类型：{{place.type=='DESK'?'散座':'包厢'}}</view>
+      <view class="item">桌台：{{place.name}}</view>
+      <view class="item">状态：<text style="color: {{activityInfo.status == 'CANCELED' ? '#FF3B30' : '#666'}}">{{activityInfo.status == 'CANCELED' ? '已关闭' : '激活'}}</text></view>
+    </view>
+    <view class="c-wrap">
+      <navigator class="l" url="../../shopDetail/shopDetail?id={{activityInfo.shop.id}}">
+        <view class="t">导航<icon class="qb-icon qb-icon-nextx"></icon></view>
+        <view class="v">{{activityInfo.shop.name}}</view>
+      </navigator>
+      <navigator class="r" bindtap="goUsers">
+        <view class="t">成员<icon class="qb-icon qb-icon-nextx"></icon></view>
+        <view class="v">{{activityInfo.actors.length}}</view>
+      </navigator>
+    </view>
+    <view class="btn-wrap" wx:if="{{activityInfo.status != 'CANCELED'}}">
+      <button plain="true" open-type="share">
+        <view class="icon-wrap">
+          <icon class="qb-icon qb-icon-yaoqing"></icon>
+        </view>
+        <view class="t">
+          邀请
+        </view>
+      </button>
+      <button plain="true" bindtap="joinActivity" wx:if="{{!isActor && activityInfo.status!='CANCELED'}}">
+        <view class="icon-wrap">
+          <icon class="qb-icon qb-icon-msnui-login"></icon>
+        </view>
+        <view class="t">
+          接受邀请
+        </view>
+      </button>
+      <button plain="true" bindtap="leaveActivity" wx:if="{{!isOwner && isActor}}">
+        <view class="icon-wrap">
+          <icon class="qb-icon qb-icon-msnui-logout"></icon>
+        </view>
+        <view class="t">
+          退出活动
+        </view>
+      </button>
+    </view>
+    <view class="info-wrap">
+      <view class="title">主人留言</view>
+      <view class="ul">
+        <view class="li">
+          <view class="l">
+            <image src="{{activityInfo.owner.avatar}}" wx:if="{{activityInfo.owner}}" mode="scaleToFill"></image>
+          </view>
+          <view class="r">
+            <text class="user-name">{{activityInfo.owner.nickName}}</text>
+            <text class="content">{{activityInfo.metadata.msgToFriend}}</text>
+            <text class="time">{{activityInfo.formatCreatedTime}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+ </view>
